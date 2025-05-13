@@ -1,0 +1,392 @@
+@charset "utf-8";
+/* 
+    Typecho Theme Development Framework
+    TTDF · 一个面向小白简单易懂的Typecho主题模板开发框架
+    Copyright 2025 鼠子Tomoriゞ
+    https://github.com/ShuShuicu/Typecho-Theme-Development-Framework
+*/
+
+/* 暗色模式 */
+body[arco-theme="dark"] {
+  --card-bg: #2d2d2d;
+  --card-text: #e0e0e0;
+  --subtitle-color: #aaa;
+  --appbar-bg: #2d2d2dcc;
+  --comment-border-color: #555;
+}
+
+body[arco-theme="light"] {
+  --card-bg: #fff;
+  --card-text: #333;
+  --subtitle-color: #666;
+  --appbar-bg: #ffffffcc;
+  --comment-border-color: #ddd;
+}
+
+/* 基础样式 */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(images/body-bg.webp), url(images/banner-bg.svg);
+  background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+  background-size: cover, 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+.Uika-Container {
+  min-height: calc(100vh - 68px);
+  max-width: 85%;
+  margin: 20px auto;
+}
+
+.Uika-Appbar {
+  padding: 35px 0px;
+  background-color: var(--appbar-bg);
+}
+
+@media (max-width: 767px) {
+  .Uika-Appbar {
+    padding: 25px 0px;
+  }
+}
+
+/* 初始状态 SVG占位图 */
+.thumbnail img.lazy {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* 过渡状态 图片加载 */
+.thumbnail img.lazy-transition {
+  opacity: 0;
+  position: absolute;
+}
+
+/* 加载完成 */
+.thumbnail img.lazy-loaded {
+  opacity: 1;
+}
+
+/* 容器相对定位 */
+.thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 确保图片填充容器 */
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.error img {
+  max-width: 520px;
+}
+
+.error .arco-result-icon {
+  display: none;
+}
+
+body .mdui-typo {
+  font-size: 17px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+body .mdui-typo :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* 懒加载图片过渡效果 */
+.lazy {
+  transition: opacity 0.3s ease;
+}
+
+.lazy-transition {
+  opacity: 0.5;
+}
+
+.lazy-loaded {
+  opacity: 1;
+}
+
+/* 图片容器样式 */
+.thumbnail {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 比例 */
+  overflow: hidden;
+}
+
+.thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+/* 高亮代码 */
+body pre[class*="language-"] {
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+/* 卡片项目 */
+.post-grid .post-item {
+  transition: all 0.5s ease;
+}
+
+/* 卡片样式 */
+#Post .mdui-card {
+  width: 100%;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform-origin: center;
+}
+
+.post-grid .mdui-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.post-grid {
+  position: relative;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.post-grid .post-item {
+  position: absolute;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.post-grid .post-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.post-grid .mdui-card-content {
+  flex-grow: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  .post-grid .post-item {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .post-grid .post-item {
+    width: 100%;
+  }
+}
+
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 30px 0;
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+/* 电脑版三栏布局 */
+@media (min-width: 768px) {
+  .footer-columns {
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  .footer-column {
+      flex: 0 0 30%;
+  }
+  
+  .footer-links {
+      list-style: none;
+  }
+  
+  .footer-links li {
+      margin-bottom: 10px;
+  }
+}
+
+/* 手机版布局 */
+@media (max-width: 767px) {
+  .footer-columns {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .about {
+      display: none; /* 隐藏关于我们 */
+  }
+  
+  .links {
+    text-align: center;
+  }
+  
+  .footer-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+  }
+  
+  .footer-links li {
+      margin-bottom: 0;
+  }
+  
+  .contact {
+      text-align: center;
+  }
+}
+
+/* 公共列样式 */
+.footer-column h3 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.footer-column p {
+  color: #bbb;
+  font-size: 14px;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a {
+  color: #fff;
+  margin-right: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+}
+
+/* 链接样式 */
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* 联系信息图标 */
+.contact-info {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.contact-info i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+/* 电脑版调整联系信息对齐 */
+@media (min-width: 768px) {
+  .contact-info {
+      display: block;
+  }
+  
+  .contact-info i {
+      margin-right: 10px;
+  }
+}
+
+/* 版权信息 */
+.copyright {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  color: #999;
+  font-size: 12px;
+}
+
+/* ------------------
+ * Comment list
+ * --------------- */
+.comment-list,
+.comment-list ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.comment-list li {
+  padding: 14px;
+  margin-top: 10px;
+  border: 1px solid var(--comment-border-color);
+  border-radius: 8px;
+}
+.comment-list li .comment-reply {
+  text-align: right;
+  font-size: 0.92857em;
+}
+
+.comment-author .avatar {
+  float: left;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+.comment-author cite {
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Comment reply */
+.comment-list .respond {
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+}
+.respond .cancel-comment-reply {
+  float: right;
+  margin-top: 15px;
+  font-size: 0.92857em;
+}
+#comment-form label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+#comment-form .required:after {
+  content: " *";
+  color: #c00;
+}
