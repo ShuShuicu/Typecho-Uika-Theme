@@ -9,7 +9,7 @@ TTDF_Hook::add_action('load_foot', function () {
                 const loadWithFallback = function(el) {
                     // 保存原始 SVG 占位图
                     if (!el.dataset.originalSrc) {
-                        el.dataset.originalSrc = el.src;
+                        el.dataset.originalSrc = '<?php Get::Options('Uika_Post_Thumbnail_Error', true) ?>';
                     }
 
                     // 创建新 Image 对象进行预加载
@@ -64,3 +64,10 @@ TTDF_Hook::add_action('load_foot', function () {
 <?php
 });
 Uika::GetComponent(Get::Options('Uika_Index_Type') ?: 'IndexCard');
+?>
+<div style="text-align: center; padding: 20px 0;">
+    <a-space>
+        <?php Get::PageLink('<a-button status="warning">上一页</a-button>') ?>
+        <?php Get::PageLink('<a-button status="success">下一页</a-button>', 'next') ?>
+    </a-space>
+</div>

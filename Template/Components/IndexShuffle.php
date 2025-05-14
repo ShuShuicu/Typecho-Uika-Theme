@@ -74,7 +74,7 @@ TTDF_Hook::add_action('load_foot', function () {
                         <div class="mdui-card-media">
                             <div class="thumbnail">
                                 <img data-src="<?php echo htmlspecialchars($thumbnailUrl); ?>"
-                                    src="<?php GetTheme::AssetsUrl(); ?>/images/thumbnail.svg"
+                                    src="<?php Get::Options('Uika_Post_Thumbnail', true) ?>"
                                     alt="<?php GetPost::Title(); ?>"
                                     class="lazy"
                                     loading="lazy">

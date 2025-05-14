@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     // NProgress 配置项
     const nprogressConfig = {
         minimum: 0.1,

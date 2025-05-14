@@ -6,18 +6,61 @@ $config = [
         'title' => '基础设置',
         'fields' => [
             [
+                // 网站图标
                 'type' => 'Text',
                 'name' => 'FaviconUrl',
-                'value' => null,
+                'value' => GetTheme::Url(false) . '/Assets/images/logo.png',
                 'label' => '图标',
                 'description' => '设置网站图标，如果为空则使用' . Get::SiteUrl(false) . 'favicon.ico'
             ],
             [
+                // 网站标题
                 'type' => 'Text',
                 'name' => 'SubTitle',
-                'value' => '由Uika主题强力驱动',
+                'value' => '由 Uika 主题强力驱动',
                 'label' => '副标题',
                 'description' => '设置网站副标题，如果为空则不显示。'
+            ],
+            [
+                // 作者头像
+                'type' => 'Text',
+                'name' => 'Uika_Author_Avatar',
+                'value' => GetTheme::Url(false) . '/Assets/images/avatar.jpg',
+                'label' => '作者头像',
+                'description' => '设置作者头像, 用于替换Gravatar。<hr>'
+            ],
+            [
+                // 提示开关
+                'type' => 'Select',
+                'name' => 'Uika_Alert_Switch',
+                'value' => 'false',
+                'label' => '公告提示',
+                'description' => '是否启用公告提示',
+                'options' => [
+                    'true' => '启用',
+                    'false' => '关闭',
+                ]
+            ],
+            [
+                // 公告提示内容
+                'type' => 'Text',
+                'name' => 'Uika_Alert_Content',
+                'value' => '感谢使用 Uika 主题！',
+                'label' => '公告提示内容',
+            ],
+            [
+                // 公告提示模式
+                'type' => 'Radio',
+                'name' => 'Uika_Alert_Mode',
+                'value' => 'info',
+                'label' => '公告提示模式',
+                'description' => '选择公告提示模式',
+                'options' => [
+                    'info' => '蓝色信息',
+                    'warning' => '黄色警告',
+                    'success' => '绿色成功',
+                    'error' => '红色错误',
+                ]
             ],
         ]
     ],
@@ -29,17 +72,65 @@ $config = [
                 'name' => 'Uika_Index_Type',
                 'value' => 'IndexShuffle',
                 'label' => '首页风格',
-                'description' => '请选择首页风格<span style="color: #ff0000";"> 瀑布流在动态分辨率下会有排版错误</span>',
+                'description' => '请选择首页风格<span style="color: #ff0000";"> 瀑布流在动态分辨率下会有排版错误</span><hr>',
                 'options' => [
                     'IndexCard' => '卡片',
                     'IndexShuffle' => '瀑布流',
                 ]
+            ],
+            [
+                // 轮播图开关
+                'type' => 'Select',
+                'name' => 'Uika_Carousel_Switch',
+                'value' => 'false',
+                'label' => '轮播图',
+                'description' => '是否启用轮播图',
+                'options' => [
+                    'true' => '启用',
+                    'false' => '关闭',
+                ]
+            ],
+            [
+                // 轮播图启用页面
+                'type' => 'Checkbox',
+                'name' => 'Uika_Carousel_Page',
+                'value' => ['index', 'category'],
+                'label' => '应用页面',
+                'description' => '请选择轮播图应用的页面',
+                'options' => [
+                    'index' => '首页',
+                    'post' => '文章页',
+                    'page' => '独立页面',
+                    'archive' => '分类标签归档页',
+                ]
+            ],
+            [
+                // 缩略图内容
+                'type' => 'Textarea',
+                'name' => 'Uika_Carousel_Content',
+                'value' => 'https://cn.bing.com|https://bing.img.run/1920x1080.php',
+                'label' => '缩略图图片',
+                'description' => '请以 跳转链接|图片链接 的格式输入，每行一个。'
             ],
         ],
     ],
     '文章设置' => [
         'title' => '文章设置',
         'fields' => [
+            [
+                'type' => 'Text',
+                'name' => 'Uika_Post_Thumbnail',
+                'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
+                'label' => '缩略图',
+                'description' => '设置文章列表默认缩略图, 图片加载时会显示。'
+            ],
+            [
+                'type' => 'Text',
+                'name' => 'Uika_Post_Thumbnail_Error',
+                'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
+                'label' => '失效图',
+                'description' => '设置文章列表失效缩略图, 图片失效时会显示。'
+            ],
             [
                 'type' => 'Radio',
                 'name' => 'Uika_Post_Prism_Css',
@@ -83,8 +174,8 @@ $config = [
             [
                 'type' => 'Textarea',
                 'name' => 'Uika_Drawer_Links',
-                'value' => 
-    '<a href=" ' . Get::SiteUrl(false) . '">
+                'value' =>
+                '<a href=" ' . Get::SiteUrl(false) . '">
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
             <div class="mdui-list-item-content">首页</div>
@@ -217,7 +308,7 @@ $config = [
                 ·
                 <a href="https://github.com/ShuShuicu/Typecho-Uika-Theme/issues">Github Issues</a>
                 <br />
-                <img src="https://i0.wp.com/i0.hdslb.com/bfs/garb/f2708ee754bc6085766bc4983040e2a08c2f76d6.png@112w_112h" />
+                <img src=" ' . GetTheme::Url(false) . '/Assets/images/logo.png" style="width: 120px;" />
             </p>
             <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=86 src="//music.163.com/outchain/player?type=2&id=2680457871&auto=1&height=66"></iframe>'
             ],

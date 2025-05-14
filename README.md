@@ -118,34 +118,28 @@ $featuredPosts = GetPost::List (
 <?php GetPost::unbindArchive(); // 结束当前绑定 ?>
 ```
 
-#### GetUser 类
+#### UserInfo 类
 
 获取用户的相关信息。
 
-|     方法     |       描述       |          示例          |
-| :----------: | :--------------: | :--------------------: |
-|    Name()    |    获取用户名    |    GetUser::Name();    |
-|   Avatar()   |   获取用户头像   |   GetUser::Avatar();   |
-|   Email()    |   获取用户邮箱   |   GetUser::Email();    |
-|    Bio()     |   获取用户简介   |    GetUser::Bio();     |
-|   Group()    |    获取用户组    |    GetUser::Role();    |
-| Registered() |   获取注册时间   | GetUser::Registered(); |
-| LastLogin()  | 获取最后登录时间 | GetUser::LastLogin();  |
-| PostCount()  |    获取文章数    | GetUser::PostCount();  |
+|                 方法                  |           描述           |              示例              |
+| :-----------------------------------: | :----------------------: | :----------------------------: |
+|                Name()                 |        获取用户名        |        GetUser::Name();        |
+| DisplayName($size, $default, $rating) |         获取昵称         |    GetUser::DisplayName();     |
+|               Avatar()                |       获取用户头像       |       GetUser::Avatar();       |
+|              AvatarURL()              |       获取用户头像       |     GetUser::AvatarURL();      |
+|                Email()                |       获取用户邮箱       |       GetUser::Email();        |
+|               WebSite()               |       获取用户网站       |      GetUser::WebSite();       |
+|                 Bio()                 |       获取用户简介       |        GetUser::Bio();         |
+|                Group()                |        获取用户组        |        GetUser::Role();        |
+|             Registered()              |       获取注册时间       |     GetUser::Registered();     |
+|              LastLogin()              |     获取最后登录时间     |     GetUser::LastLogin();      |
+|              PostCount()              |        获取文章数        |     GetUser::PostCount();      |
+|              PageCount()              |       获取页面数量       |     GetUser::PageCount();      |
+|              Permalink()              |       获取作者链接       |     GetUser::Permalink();      |
 
-#### GetAuthor 类
 
-获取作者的相关信息。
-
-|    方法     |       描述       |          示例           |
-| :---------: | :--------------: | :---------------------: |
-|   Name()    | 获取当前页面标题 |   GetAuthor::Name();    |
-|   Email()   |   获取作者邮箱   |   GetAuthor::Email();   |
-|    Bio()    |   获取作者简介   |    GetAuthor::Bio();    |
-|  Author()   |   获取文章作者   |  GetAuthor::Author();>  |
-| Permalink() |   获取作者链接   | GetAuthor::Permalink(); |
-
-#### GetComments 类
+#### Comment 类
 
 获取评论的相关信息。
 
@@ -160,14 +154,6 @@ $featuredPosts = GetPost::List (
 | CancelReply()  | 获取取消回复  | GetComments::CancelReply();  |
 |   Remember()   | 获取 Remember |   GetComments::Remember();   |
 |   PageNav()    | 获取评论分页  |   GetComments::PageNav();    |
-
-#### GetFunctions 类
-
-提供一些常用的功能函数。
-
-|    方法     |     描述     |            示例            |
-| :---------: | :----------: | :------------------------: |
-| TimerStop() | 获取加载时间 | GetFunctions::TimerStop(); |
 
 ### TyAjax
 > 提供简单易用的 AJAX 请求处理功能
