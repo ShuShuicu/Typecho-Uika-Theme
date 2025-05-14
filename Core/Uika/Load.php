@@ -39,7 +39,6 @@ TTDF_Hook::add_action('load_foot', function () {
     $scripts = [
         'main.js',
         'dom.js',
-        'shuffle.min.js',
         'lozad.min.js',
         'message.js',
         'masonry.pkgd.min.js',

@@ -6,20 +6,20 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <div class="footer-container">
         <div class="footer-columns">
             <div class="footer-column about">
-                <?php Get::Options('Footer_About', true); ?>
+                <?php Get::Options('Uika_Footer_About', true); ?>
             </div>
 
             <div class="footer-column links">
-                <?php Get::Options('Footer_Links', true); ?>
+                <?php Get::Options('Uika_Footer_Links', true); ?>
             </div>
 
             <div class="footer-column contact">
-                <?php Get::Options('Footer_Contact', true); ?>
+                <?php Get::Options('Uika_Footer_Contact', true); ?>
             </div>
         </div>
 
         <div class="copyright">
-            <?php Get::Options('Footer_Copyright', true); ?>
+            <?php Get::Options('Uika_Footer_Copyright', true); ?>
         </div>
     </div>
 </footer>

@@ -38,7 +38,9 @@ TTDF_Hook::add_action('load_foot', function () {
                             <div class="mdui-textfield">
                                 <a-textarea placeholder="下面我简单喵两句/ᐠ｡ꞈ｡ᐟ\" value="<?php $this->remember('text'); ?>" allow-clear rows="4" name="text" />
                             </div>
-                            <a-button type="primary" html-type="submit" class="mdui-float-right submit"><?php _e('提交评论'); ?></a-button>
+                            <div class="mdui-float-right">
+                                <a-button type="primary" html-type="submit" class="submit"><?php _e('提交评论'); ?></a-button>
+                            </div>
                         </form>
                     </div>
                 <?php } else { ?>
