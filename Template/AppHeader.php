@@ -19,17 +19,17 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             if (Get::Options('Uika_Alert_Switch') === 'true') {
                 Uika::GetComponent('Alert');
             }
-
-            // 获取轮播图启用页面
-            $carouselPages = Get::Options('Uika_Carousel_Page');
-
-            // 判断当前页面是否启用轮播图
-            if (
-                (in_array('index', $carouselPages) && Get::Is('index')) ||
-                (in_array('post', $carouselPages) && Get::Is('post')) ||
-                (in_array('page', $carouselPages) && Get::Is('page')) ||
-                (in_array('archive', $carouselPages) && Get::Is('archive'))
-            ) {
-                Uika::GetComponent('Carousel'); // 启用轮播图
+            if (Get::Options('Uika_Carousel_Switch') === 'true') {
+                // 获取轮播图启用页面
+                $carouselPages = Get::Options('Uika_Carousel_Page');
+                // 判断当前页面是否启用轮播图
+                if (
+                    (in_array('index', $carouselPages) && Get::Is('index')) ||
+                    (in_array('post', $carouselPages) && Get::Is('post')) ||
+                    (in_array('page', $carouselPages) && Get::Is('page')) ||
+                    (in_array('archive', $carouselPages) && Get::Is('archive'))
+                ) {
+                    Uika::GetComponent('Carousel'); // 启用轮播图
+                }
             }
             ?>

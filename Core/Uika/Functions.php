@@ -92,6 +92,43 @@ function getAttachmentImageUrl($widget)
     return null;
 }
 
+/*
+* 评论回复时 @ 评论人
+*/
+function get_comment_at($coid)
+{
+    $db   = Typecho_Db::get();
+    $prow = $db->fetchRow($db->select('parent,status')->from('table.comments')
+        ->where('coid = ?', $coid));
+    $mail = "";
+    $parent = @$prow['parent'];
+    if ($parent != "0") {
+        $arow = $db->fetchRow($db->select('author,status,mail')->from('table.comments')
+            ->where('coid = ?', $parent));
+        @$author = @$arow['author'];
+        $mail = @$arow['mail'];
+        if(@$author && $arow['status'] == "approved"){
+            if (@$prow['status'] == "waiting"){
+                echo '<p class="commentReview">（评论审核中）)</p>';
+            }
+            echo '<a href="#comment-' . $parent . '">@' . $author . '</a>';
+        }else{
+            if (@$prow['status'] == "waiting"){
+                echo '<p class="commentReview">（评论审核中）)</p>';
+            }else{
+                echo '';
+            }
+        }
+
+    } else {
+        if (@$prow['status'] == "waiting"){
+            echo '<p class="commentReview">（评论审核中）)</p>';
+        }else{
+            echo '';
+        }
+    }
+}
+
 if (Get::Options('Uika_NB') === 'true') {
     TTDF_Hook::add_action('load_foot', function () {
 ?>

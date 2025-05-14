@@ -31,29 +31,40 @@
   navigation: auto;
 }
 
-/* 定义淡入淡出效果 */
+/* 定义淡入淡出动画 */
 ::view-transition-old(root) {
-  animation: fadeOut 0.5s ease-out;
+  animation: fade-out 0.7s ease-out forwards;
 }
 
 ::view-transition-new(root) {
-  animation: fadeIn 0.5s ease-in;
+  animation: fade-in 0.5s ease-in forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes fadeOut {
+@keyframes fade-out {
   from { opacity: 1; }
   to { opacity: 0; }
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* 确保首次加载时也有淡入效果 */
+body {
+  opacity: 0;
+  animation: fade-in 0.7s ease-in forwards;
+}
+
+/* 当View Transitions不可用时 */
+@supports not (view-transition-name: none) {
   body {
-    animation: none !important;
-    opacity: 1 !important;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+  
+  body.loaded {
+    opacity: 1;
   }
 }
 
@@ -95,6 +106,14 @@ body .sidebar {
   top: 20px;
   transition: top 0.3s; /* 平滑过渡效果 */
 }
+
+@media screen and (max-width: 1024px) {
+  body .sidebar {
+    display: none;
+  }
+  
+}
+
 /* 图片懒加载效果 */
 .thumbnail {
   position: relative;
@@ -312,60 +331,6 @@ body .footer-links li {
   border-top: 1px solid #444;
   color: #999;
   font-size: 12px;
-}
-
-/* 评论列表 */
-.comment-list,
-.comment-list ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.comment-list li {
-  padding: 14px;
-  margin-top: 10px;
-  border: 1px solid var(--comment-border-color);
-  border-radius: 8px;
-}
-
-.comment-list li .comment-reply {
-  text-align: right;
-  font-size: 0.92857em;
-}
-
-.comment-author .avatar {
-  float: left;
-  margin-right: 10px;
-  border-radius: 8px;
-}
-
-.comment-author cite {
-  font-weight: bold;
-  font-style: normal;
-}
-
-/* 评论回复表单 */
-.comment-list .respond {
-  margin-top: 15px;
-  border-top: 1px solid #eee;
-}
-
-.respond .cancel-comment-reply {
-  float: right;
-  margin-top: 15px;
-  font-size: 0.92857em;
-}
-
-#comment-form label {
-  display: block;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-}
-
-#comment-form .required:after {
-  content: " *";
-  color: #c00;
 }
 
 /* 响应式设计 */

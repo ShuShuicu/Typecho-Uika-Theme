@@ -33,24 +33,11 @@ TTDF_Hook::add_action('load_foot', function () {
             >
                 <a-carousel-item v-for="(item, index) in carouselItems" :key="index" class="Uika-carousel-item">
                     <a :href="item.link" target="_blank">
-                        <img 
-                            :data-src="item.image" 
-                            src="<?php Get::Options('Uika_Post_Thumbnail', true) ?>" 
-                            class="lazy" 
-                            loading="lazy"
-                        >
+                        <img :src="item.image" />
                     </a>
                 </a-carousel-item>
             </a-carousel>
         `,
-            mounted() {
-                // 手动触发 lozad.js 加载
-                const observer = lozad('.lazy', {
-                    rootMargin: '200px 0px',
-                    threshold: 0.1
-                });
-                observer.observe();
-            }
         });
         Carousel.mount('#Carousel');
     </script>

@@ -82,7 +82,7 @@ $config = [
                 // 轮播图开关
                 'type' => 'Select',
                 'name' => 'Uika_Carousel_Switch',
-                'value' => 'false',
+                'value' => 'true',
                 'label' => '轮播图',
                 'description' => '是否启用轮播图',
                 'options' => [
@@ -94,7 +94,7 @@ $config = [
                 // 轮播图启用页面
                 'type' => 'Checkbox',
                 'name' => 'Uika_Carousel_Page',
-                'value' => ['index', 'category'],
+                'value' => ['index', 'post', 'page', 'archive'],
                 'label' => '应用页面',
                 'description' => '请选择轮播图应用的页面',
                 'options' => [
@@ -108,7 +108,9 @@ $config = [
                 // 缩略图内容
                 'type' => 'Textarea',
                 'name' => 'Uika_Carousel_Content',
-                'value' => 'https://cn.bing.com|https://bing.img.run/1920x1080.php',
+                'value' => 
+                'https://github.com/ShuShuicu|https://bing.img.run/1920x1080.php' . "\n" .
+                'https://space.bilibili.com/435502585|https://bing.img.run/rand.php',
                 'label' => '缩略图图片',
                 'description' => '请以 跳转链接|图片链接 的格式输入，每行一个。'
             ],

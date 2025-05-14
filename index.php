@@ -1,6 +1,6 @@
 <?php 
 /**
- * 一款多功能的Typecho主题
+ * 一款不错的Typecho主题
  * @package Uika
  * @author 鼠子(Tomoriゞ)
  * @version 1.0.0
