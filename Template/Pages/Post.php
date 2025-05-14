@@ -3,6 +3,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 TTDF_Hook::add_action('load_foot', function () {
 ?>
     <script type="text/javascript">
+        (function() {
+            var pres = document.querySelectorAll('pre');
+            var lineNumberClassName = 'line-numbers';
+            pres.forEach(function(item, index) {
+                item.className = item.className == '' ? lineNumberClassName : item.className + ' ' + lineNumberClassName;
+            });
+        })();
         window.ViewImage && ViewImage.init('#PostContent img');
     </script>
 <?php

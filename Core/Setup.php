@@ -27,12 +27,34 @@ $config = [
             [
                 'type' => 'Radio',
                 'name' => 'Uika_Index_Type',
-                'value' => 'option1',
+                'value' => 'IndexShuffle',
                 'label' => '首页风格',
                 'description' => '请选择首页风格<span style="color: #ff0000";"> 瀑布流在动态分辨率下会有排版错误</span>',
                 'options' => [
                     'IndexCard' => '卡片',
                     'IndexShuffle' => '瀑布流',
+                ]
+            ],
+        ],
+    ],
+    '文章设置' => [
+        'title' => '文章设置',
+        'fields' => [
+            [
+                'type' => 'Radio',
+                'name' => 'Uika_Post_Prism_Css',
+                'value' => 'Okaidia.css',
+                'label' => '代码高亮',
+                'description' => '请选择代码高亮的风格',
+                'options' => [
+                    'Default.css' => 'Default',
+                    'Okaidia.css' => 'Okaidia',
+                    'Coy.css' => 'Coy',
+                    'SolarizedLight.css' => 'SolarizedLight',
+                    'TomorrowNight.css' => 'TomorrowNight',
+                    'Twilight.css' => 'Twilight',
+                    'Funky.css' => 'Funky',
+                    'Dark.css' => 'Dark',
                 ]
             ],
         ],
@@ -54,16 +76,40 @@ $config = [
             [
                 'type' => 'Textarea',
                 'name' => 'Uika_Appbar_Links',
-                'value' => null,
+                'value' => '首页|' . Get::SiteUrl(false),
                 'label' => '顶部导航链接',
                 'description' => '设置网站图标，如果为空则使用 首页|' . Get::SiteUrl(false)
             ],
             [
                 'type' => 'Textarea',
                 'name' => 'Uika_Drawer_Links',
-                'value' => '首页|' . Get::SiteUrl(false),
+                'value' => 
+    '<a href=" ' . Get::SiteUrl(false) . '">
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+            <div class="mdui-list-item-content">首页</div>
+        </li>
+    </a>
+
+    <a href="https://github.com/ShuShuicu/Typecho-Uika-Theme" _target="_blank">
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">code</i>
+            <div class="mdui-list-item-content">GitHub</div>
+        </li>
+    </a>
+
+    <li class="mdui-collapse-item mdui-collapse-item-open">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">menu</i>
+            <div class="mdui-list-item-content">子菜单</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+            <li class="mdui-list-item mdui-ripple">Overview</li>
+        </ul>
+    </li>',
                 'label' => '侧边抽屉导航',
-                'description' => '设置网站抽屉侧边导航，如果为空则使用 首页|' . Get::SiteUrl(false)
+                'description' => '设置网站抽屉侧边导航, 使用MDUI的列表组件<a href="https://www.mdui.org/docs/list">https://www.mdui.org/docs/list</a>'
             ],
         ]
     ],

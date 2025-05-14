@@ -4,16 +4,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 TTDF_Hook::add_action('load_head', function () {
     $assetsUrl = GetTheme::Url(false) . '/Assets';
     $ver = GetTheme::Ver(false);
+    $PrismCss = Get::Options('Uika_Post_Prism_Css', false) ?: 'Okaidia.css';
     $styles = [
         'main.css',
         'message.css',
+        'prism/css/' . $PrismCss,
         'mdui/css/mdui.min.css',
         'arco/arco.min.css',
         'nprogress/nprogress.css',
         'font-awesome/css/all.min.css',
-        'prismjs/themes/prism-tomorrow.min.css',
-        'prismjs/plugins/toolbar/prism-toolbar.min.css',
-        'prismjs/plugins/line-numbers/prism-line-numbers.min.css',
     ];
     $scripts = [
         'init.js',
@@ -41,15 +40,10 @@ TTDF_Hook::add_action('load_foot', function () {
         'dom.js',
         'lozad.min.js',
         'message.js',
-        'masonry.pkgd.min.js',
+        'prism/prism.js',
         'mdui/js/mdui.min.js',
         'arco/arco-vue.min.js',
         'nprogress/nprogress.js',
-        'prismjs/prism.js',
-        'prismjs/plugins/line-numbers/prism-line-numbers.min.js',
-        'prismjs/plugins/toolbar/prism-toolbar.min.js',
-        'prismjs/plugins/autoloader/prism-autoloader.min.js',
-        'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js',
     ];
 
     $output = '';
