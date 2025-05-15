@@ -89,7 +89,7 @@ a {
 /* 布局容器 */
 .Uika-Container {
   min-height: calc(100vh - 68px);
-  max-width: 85%;
+  max-width: 80%;
   margin: 20px auto;
 }
 
@@ -113,6 +113,16 @@ body .sidebar {
   }
   
 }
+
+.swal2-popup {
+  color: inherit;
+  background-color: var(--card-bg);
+}
+
+.swal2-actions {
+  color: inherit;
+}
+
 
 /* 图片懒加载效果 */
 .thumbnail {
@@ -153,13 +163,13 @@ body .sidebar {
 
 @media (max-width: 1024px) {
   .Uika-Carousel {
-      height: calc(340px / 1.1);
+      height: calc(420px / 1.3);
   }
 }
 
 @media (max-width: 768px) {
   .Uika-Carousel {
-      height: calc(340px / 1.5);
+      height: calc(420px / 2);
   }
 }
 
@@ -202,10 +212,13 @@ body pre[class*="language-"] {
 
 /* 卡片布局 */
 
+body .mdui-card {
+  border-radius: 4px;
+}
+
 #Post .mdui-card,
 .post-grid .post-card {
   width: 100%;
-  border-radius: 4px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -247,6 +260,19 @@ body pre[class*="language-"] {
 .post-grid .post-card:hover {
   transform: scale(1.01);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1024px) {
+  #IndexShuffle .post-grid .post-item {
+    width: calc(50% - 20px);
+  }
+}
+
+
+@media (max-width: 768px) {
+  #IndexShuffle .post-grid .post-item {
+    width: 100%;
+  }
 }
 
 /* 页脚样式 */
@@ -333,21 +359,13 @@ body .footer-links li {
   font-size: 12px;
 }
 
-/* 响应式设计 */
 @media (max-width: 1024px) {
   .Uika-Appbar {
     padding: 25px 0;
   }
-
-  #IndexShuffle .post-grid .post-item {
-    width: calc(50% - 20px);
-  }
 }
 
 @media (max-width: 768px) {
-  #IndexShuffle .post-grid .post-item {
-    width: 100%;
-  }
 
   /* 移动端页脚布局 */
   .footer-columns {
@@ -407,7 +425,7 @@ body .footer-links li {
   content: "";
   background: #929292;
   max-width: 20%;
-  height: 2px;
+  height: 1px;
   margin: 0 1em;
   flex: 1;
 }
@@ -446,7 +464,7 @@ body .footer-links li {
 }
 
 /* 设置文本内容容器 */
-#TA-con {
+.TA-con {
   width: 40%;
   height: 50px;
   background-color: #f25d8e;
@@ -460,7 +478,7 @@ body .footer-links li {
 }
 
 @media screen and (max-width: 768px) {
-  body #TA-con {
+  body .TA-con {
     width: 94px;
     height: 32px;
     right: -6px;
@@ -536,7 +554,7 @@ body .footer-links li {
   color: #fff;
 }
 
-#TA-con:hover {
+.TA-con:hover {
   background-color: #ff6b9a;
 }
 
@@ -571,16 +589,16 @@ svg {
 }
 
 /* 对充电框hover的时候开始动画，将粉色线条铺开 */
-#TA-con:hover + #tube-con > #mask {
+.TA-con:hover + #tube-con > #mask {
   width: 150px;
 }
 
 /* 对充电框hover的时候开始动画，添加黄色快速移动的动画 */
-#TA-con:hover + #tube-con > #orange-mask {
+.TA-con:hover + #tube-con > #orange-mask {
   animation: move1 0.5s linear 0.2s infinite;
 }
 
-#TA-con:hover + #tube-con > #orange-mask svg {
+.TA-con:hover + #tube-con > #orange-mask svg {
   animation: movetwo 0.5s linear 0.2s infinite;
 }
 

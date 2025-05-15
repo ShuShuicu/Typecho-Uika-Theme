@@ -1,5 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+$TTDF_Error_Page_Title = '404 Not Found';
+$TTDF_Error_Page_Description = '404 Not Found';
+$TTDF_Error_Page_Keywords = '404, Not Found';
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo Get::Options('lang', false) ? Get::Options('lang', false) : 'zh-CN' ?>">
@@ -7,10 +10,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <head>
     <meta charset="<?php Get::Options('charset', true) ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
-    <?php
-        TTDF::Functions('SEO');
-        TTDF_Hook::do_action('load_head');
-    ?>
+    <title><?php echo $TTDF_Error_Page_Title; ?></title>
+    <meta name="keywords" content="<?php echo $TTDF_Error_Page_Description; ?>" />
+    <meta name="description" content="<?php echo $TTDF_Error_Page_Keywords; ?>" />
+<?php TTDF_Hook::do_action('load_head', true); ?>
     <link href="<?php echo Get::Options('FaviconUrl', false) ? Get::Options('FaviconUrl', false) : Get::SiteUrl(false) . 'favicon.ico'; ?>" rel="icon" />
 </head>
 
@@ -23,18 +26,5 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             <?php
             if (Get::Options('Uika_Alert_Switch') === 'true') {
                 Uika::GetComponent('Alert');
-            }
-            if (Get::Options('Uika_Carousel_Switch') === 'true') {
-                // 获取轮播图启用页面
-                $carouselPages = Get::Options('Uika_Carousel_Page');
-                // 判断当前页面是否启用轮播图
-                if (
-                    (in_array('index', $carouselPages) && Get::Is('index')) ||
-                    (in_array('post', $carouselPages) && Get::Is('post')) ||
-                    (in_array('page', $carouselPages) && Get::Is('page')) ||
-                    (in_array('archive', $carouselPages) && Get::Is('archive'))
-                ) {
-                    Uika::GetComponent('Carousel'); // 启用轮播图
-                }
             }
             ?>

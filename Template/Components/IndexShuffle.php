@@ -98,11 +98,4 @@ TTDF_Hook::add_action('load_foot', function () {
             </div>
         <?php } ?>
     </div>
-
-    <div style="text-align: center; padding: 20px 0;">
-        <a-space>
-            <?php Get::PageLink('<a-button status="warning">上一页</a-button>') ?>
-            <?php Get::PageLink('<a-button status="success">下一页</a-button>', 'next') ?>
-        </a-space>
-    </div>
 </div>

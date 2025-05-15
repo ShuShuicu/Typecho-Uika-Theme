@@ -4,6 +4,152 @@
     @Author 鼠子Tomoriゞ
     https://github.com/ShuShuicu/Typecho-Theme-Development-Framework
 */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 配置进度条
+    const configureProgress = () => {
+        if (typeof NProgress !== 'undefined') {
+            NProgress.configure({
+                minimum: 0.1,
+                easing: 'ease',
+                speed: 500,
+                showSpinner: true,
+                trickle: true,
+                trickleSpeed: 200
+            });
+            NProgress.start();
+
+            // 设置进度条完成条件
+            window.addEventListener('load', () => NProgress?.done());
+            setTimeout(() => NProgress?.done(), 1000);
+        }
+    };
+
+    // 检查依赖是否可用
+    const checkDependencies = () => {
+        return typeof Vue === 'object' &&
+            typeof ArcoVue === 'object' &&
+            ArcoVue.install;
+    };
+
+    // 初始化Vue应用
+    const initializeApp = () => {
+        try {
+            if (!checkDependencies()) {
+                throw new Error('Vue或ArcoVue未正确加载');
+            }
+
+            const { createApp } = Vue;
+
+            // 检查是否已有实例
+            if (document.querySelector('#app[data-v-app]')) {
+                console.warn('已有Vue应用实例，跳过初始化');
+                return;
+            }
+
+            const app = createApp({
+                data() {
+                    return {
+                        Uika: '',
+                    };
+                }
+            });
+
+            // 注册ArcoVue组件
+            app.use(ArcoVue);
+
+            // 确保挂载点存在
+            let mountPoint = document.querySelector('#app');
+            if (!mountPoint) {
+                mountPoint = document.createElement('div');
+                mountPoint.id = 'app';
+                document.body.appendChild(mountPoint);
+            }
+
+            app.mount(mountPoint);
+            mdui?.mutation();
+            console.log('Vue应用挂载成功');
+        } catch (error) {
+            console.error('应用初始化失败:', error);
+        }
+    };
+
+    // 观察依赖加载
+    const setupObserver = () => {
+        if (checkDependencies()) {
+            initializeApp();
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            if (checkDependencies()) {
+                observer.disconnect();
+                initializeApp();
+            }
+        });
+
+        observer.observe(document.head, { childList: true, subtree: true });
+
+        setTimeout(() => {
+            observer.disconnect();
+            if (checkDependencies()) {
+                initializeApp();
+            } else {
+                console.error('Vue或ArcoVue加载超时');
+            }
+        }, 5000);
+    };
+
+    // 初始化搜索功能
+    const initializeSearch = () => {
+        const searchButton = document.getElementById('searchButton');
+        if (!searchButton) {
+            console.error('搜索按钮元素未找到');
+            return;
+        }
+
+        searchButton.addEventListener('click', () => {
+            Swal.fire({
+                title: '搜索内容',
+                input: 'text',
+                inputPlaceholder: '请输入关键词...',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: '搜索',
+                cancelButtonText: '取消',
+                showLoaderOnConfirm: true,
+                preConfirm: (keyword) => {
+                    if (!keyword) {
+                        Swal.showValidationMessage('请输入搜索内容');
+                        return false;
+                    }
+                    return new Promise((resolve) => {
+                        setTimeout(() => resolve(), 100);
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const encodedKeyword = encodeURIComponent(result.value);
+                    window.location.href = `/search/${encodedKeyword}`;
+                }
+            });
+        });
+    };
+
+    // 主初始化函数
+    const initialize = () => {
+        configureProgress();
+        setupObserver();
+        initializeSearch();
+    };
+
+    // 执行初始化
+    initialize();
+});
+
 // 切换主题
 function switchTheme() {
     const body = document.body;

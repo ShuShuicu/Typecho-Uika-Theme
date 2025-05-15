@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * @example 主题注册设置项 TTDF_RESTAPI_Switch 值为 true 时，开启 REST API 功能
  */
 $TTDF_RESTAPI = false;
-$TTDF_RESTAPI_ROUTE = 'API';
+$TTDF_RESTAPI_ROUTE = 'Uika/API';
 
 $TTDF_Fields = true; // 是否开启自定义字段
 

@@ -1,6 +1,6 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-Get::Template('AppHeader');
+Get::Template('AppHeaderError');
 ?>
 <div class="error">
     <div style="text-align: center;">

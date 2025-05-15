@@ -12,10 +12,10 @@ TTDF_Hook::add_action('load_head', function () {
         'mdui/css/mdui.min.css',
         'arco/arco.min.css',
         'nprogress/nprogress.css',
+        'sweetalert2/sweetalert2.min.css',
         'font-awesome/css/all.min.css',
     ];
     $scripts = [
-        'init.js',
         'vue.global.min.js',
         'jquery.min.js',
     ];
@@ -37,12 +37,12 @@ TTDF_Hook::add_action('load_foot', function () {
     $ver = GetTheme::Ver(false);
     $scripts = [
         'main.js',
-        'dom.js',
         'message.js',
         'prism/prism.js',
         'mdui/js/mdui.min.js',
         'arco/arco-vue.min.js',
         'nprogress/nprogress.js',
+        'sweetalert2/sweetalert2.all.min.js',
     ];
 
     $output = '';

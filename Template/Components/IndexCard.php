@@ -1,5 +1,13 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+function Uika_Index_Card_Style()
+{
+    if (Get::Options('Uika_Index_Card_Style') === 'big') {
+        echo 'mdui-col-xl-4 mdui-col-lg-4 mdui-col-md-6 mdui-col-sm-12';
+    } else {
+        echo 'mdui-col-xl-3 mdui-col-lg-3 mdui-col-md-4 mdui-col-sm-6';
+    }
+}
 ?>
 <div id="IndexCard">
     <div class="post-grid mdui-row" id="Post">
@@ -7,7 +15,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             $Fields = Get::Fields('Thumbnail_Url') ?? null;
             $thumbnailUrl = $Fields ?: get_ArticleThumbnail($this);
         ?>
-            <div class="post-item mdui-col-xl-4 mdui-col-lg-4 mdui-col-md-6 mdui-col-sm-12" data-groups='["post"]'>
+            <div class="post-item <?php htmlspecialchars(Uika_Index_Card_Style()); ?> " data-groups='["post"]'>
                 <a href="<?php GetPost::Permalink(); ?>">
                     <div class="mdui-card post-card">
                         <div class="mdui-card-media">

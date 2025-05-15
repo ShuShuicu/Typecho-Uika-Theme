@@ -1,9 +1,26 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+TTDF_Hook::add_action('load_foot', function () {
+?>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('BiliPay').addEventListener('click', function() {
+                Swal.fire({
+                    title: "感谢支持",
+                    text: "点点赞赏，手留余香",
+                    imageUrl: "<?php Get::Options('Uika_Post_BiliPay_Img', true) ?>",
+                    imageWidth: 300,
+                    imageAlt: "充电收款码"
+                });
+            });
+        });
+    </script>
+<?php
+});
 ?>
 
 <div id="con">
-    <div id="TA-con" mdui-dialog="{target: '#BPayTomori'}">
+    <div class="TA-con" id="BiliPay">
         <div id="text-con">
             <div id="linght"></div>
             <div id="TA">为TA充电</div>
@@ -49,18 +66,5 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
             </svg>
         </div>
         <p id="people"><b>感谢支持</b></p>
-    </div>
-    <div class="mdui-dialog" id="BPayTomori">
-        <div class="mdui-dialog-title">感谢您对本站的支持！</div>
-        <div class="mdui-typo" style="margin: -10px 20px 0px;">
-            <?php if (!empty(Get::Options('PayQrcode'))) { ?>
-                <img src="<?php echo Get::Options('PayQrcode') ?>" />
-            <?php } else {
-                echo '<p>感谢支持！目前还不需要充电~</p>';
-            } ?>
-        </div>
-        <div class="mdui-dialog-actions">
-            <button class="mdui-btn mdui-ripple" mdui-dialog-close>关闭</button>
-        </div>
     </div>
 </div>

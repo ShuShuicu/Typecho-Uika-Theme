@@ -47,7 +47,7 @@ TTDF_Hook::add_action('load_foot', function () {
             </div>
         <?php } ?>
         <div class="mdui-toolbar-spacer"></div>
-        <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#SearchDialog', history: false}">
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon" id="searchButton">
             <i class="mdui-icon material-icons">search</i>
         </a>
         <a href="javascript:;" class="mdui-btn mdui-btn-icon" id="SwitchTheme" onclick="switchTheme()">
@@ -56,24 +56,8 @@ TTDF_Hook::add_action('load_foot', function () {
     </div>
 </div>
 
-<div class="mdui-drawer mdui-drawer-close mdui-card" id="Drawer">
+<div class="mdui-drawer mdui-drawer-close mdui-card" id="Drawer" style="border-radius: 0px;">
     <ul class="mdui-list" mdui-collapse="{accordion: true}">
         <?php json_encode(Get::Options('Uika_Drawer_Links', true)); ?>
     </ul>
-</div>
-
-<div class="mdui-dialog" id="SearchDialog">
-    <div class="mdui-dialog-title">搜索文章</div>
-    <form method="post" :action="siteUrl" role="search">
-        <div style="margin: -10px 20px 0px 20px;">
-            <div class="mdui-textfield">
-                <i class="mdui-icon material-icons" aria-hidden="true">search</i>
-                <input class="mdui-textfield-input" type="search" name="s" placeholder="输入关键词后按回车(Enter)..." aria-label="搜索文章" required>
-            </div>
-        </div>
-        <div class="mdui-dialog-actions">
-            <button class="mdui-btn mdui-ripple" mdui-dialog-cancel>关闭</button>
-            <button class="mdui-btn mdui-ripple" type="submit">搜索</button>
-        </div>
-    </form>
 </div>

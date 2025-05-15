@@ -14,20 +14,12 @@ $config = [
                 'description' => '设置网站图标，如果为空则使用' . Get::SiteUrl(false) . 'favicon.ico'
             ],
             [
-                // 网站标题
+                // 网站副标题
                 'type' => 'Text',
                 'name' => 'SubTitle',
                 'value' => '由 Uika 主题强力驱动',
                 'label' => '副标题',
-                'description' => '设置网站副标题，如果为空则不显示。'
-            ],
-            [
-                // 作者头像
-                'type' => 'Text',
-                'name' => 'Uika_Author_Avatar',
-                'value' => GetTheme::Url(false) . '/Assets/images/avatar.jpg',
-                'label' => '作者头像',
-                'description' => '设置作者头像, 用于替换Gravatar。<hr>'
+                'description' => '设置网站副标题，如果为空则不显示。<hr>'
             ],
             [
                 // 提示开关
@@ -46,7 +38,8 @@ $config = [
                 'type' => 'Text',
                 'name' => 'Uika_Alert_Content',
                 'value' => '感谢使用 Uika 主题！',
-                'label' => '公告提示内容',
+                'label' => '公告内容',
+                'description' => '公告提示内容。',
             ],
             [
                 // 公告提示模式
@@ -68,14 +61,27 @@ $config = [
         'title' => '首页设置',
         'fields' => [
             [
+                // 首页风格
                 'type' => 'Radio',
                 'name' => 'Uika_Index_Type',
-                'value' => 'IndexShuffle',
+                'value' => 'IndexCard',
                 'label' => '首页风格',
-                'description' => '请选择首页风格<span style="color: #ff0000";"> 瀑布流在动态分辨率下会有排版错误</span><hr>',
+                'description' => '请选择首页风格',
                 'options' => [
                     'IndexCard' => '卡片',
                     'IndexShuffle' => '瀑布流',
+                ]
+            ],
+            [
+                // 首页卡片风格
+                'type' => 'Radio',
+                'name' => 'Uika_Index_Card_Style',
+                'value' => 'small',
+                'label' => '卡片显示',
+                'description' => '请选择首页卡片显示风格<a style="color: red"> 注: 瀑布流不生效</a><hr>',
+                'options' => [
+                    'small' => '小卡片',
+                    'big' => '大卡片',
                 ]
             ],
             [
@@ -105,13 +111,13 @@ $config = [
                 ]
             ],
             [
-                // 缩略图内容
+                // 轮播图片
                 'type' => 'Textarea',
                 'name' => 'Uika_Carousel_Content',
-                'value' => 
+                'value' =>
                 'https://github.com/ShuShuicu|https://bing.img.run/1920x1080.php' . "\n" .
-                'https://space.bilibili.com/435502585|https://bing.img.run/rand.php',
-                'label' => '缩略图图片',
+                    'https://space.bilibili.com/435502585|https://bing.img.run/rand.php',
+                'label' => '轮播图片',
                 'description' => '请以 跳转链接|图片链接 的格式输入，每行一个。'
             ],
         ],
@@ -120,6 +126,7 @@ $config = [
         'title' => '文章设置',
         'fields' => [
             [
+                // 缩略图
                 'type' => 'Text',
                 'name' => 'Uika_Post_Thumbnail',
                 'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
@@ -127,13 +134,23 @@ $config = [
                 'description' => '设置文章列表默认缩略图, 图片加载时会显示。'
             ],
             [
+                // 缩略图失效
                 'type' => 'Text',
                 'name' => 'Uika_Post_Thumbnail_Error',
                 'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
                 'label' => '失效图',
-                'description' => '设置文章列表失效缩略图, 图片失效时会显示。'
+                'description' => '设置文章列表失效缩略图, 图片失效时会显示。<hr>'
             ],
             [
+                // 收款码
+                'type' => 'Text',
+                'name' => 'Uika_Post_BiliPay_Img',
+                'value' => GetTheme::Url(false) . '/Assets/images/logo.png',
+                'label' => '收款码',
+                'description' => '设置文章底部充电收款码。<hr>'
+            ],
+            [
+                // 文章代码高亮
                 'type' => 'Radio',
                 'name' => 'Uika_Post_Prism_Css',
                 'value' => 'Okaidia.css',
@@ -156,6 +173,7 @@ $config = [
         'title' => '导航设置',
         'fields' => [
             [
+                // 顶部导航开关
                 'type' => 'Select',
                 'name' => 'Uika_Appbar_Links_Switch',
                 'value' => 'true',
@@ -167,6 +185,7 @@ $config = [
                 ]
             ],
             [
+                // 顶部导航链接
                 'type' => 'Textarea',
                 'name' => 'Uika_Appbar_Links',
                 'value' => '首页|' . Get::SiteUrl(false),
@@ -174,6 +193,7 @@ $config = [
                 'description' => '设置网站图标，如果为空则使用 首页|' . Get::SiteUrl(false)
             ],
             [
+                // 顶部导航链接
                 'type' => 'Textarea',
                 'name' => 'Uika_Drawer_Links',
                 'value' =>
@@ -206,10 +226,24 @@ $config = [
             ],
         ]
     ],
+    '侧边设置' => [
+        'title' => '侧边设置',
+        'fields' => [
+            [
+                // 作者头像
+                'type' => 'Text',
+                'name' => 'Uika_Author_Avatar',
+                'value' => GetTheme::Url(false) . '/Assets/images/avatar.jpg',
+                'label' => '作者头像',
+                'description' => '设置作者头像, 如果为空则使用Gravatar。<hr>'
+            ],
+        ],
+    ],
     '页脚设置' => [
         'title' => '页脚设置',
         'fields' => [
             [
+                // 页脚版权
                 'type' => 'Textarea',
                 'name' => 'Uika_Footer_Copyright',
                 'value' => '<p>&copy; ' . date('Y') . ' ' . Get::SiteName(false) . ' 保留所有权利.</p>',
@@ -217,6 +251,7 @@ $config = [
                 'description' => '设置网站页脚版权声明。'
             ],
             [
+                // 页脚关于我们
                 'type' => 'Textarea',
                 'name' => 'Uika_Footer_About',
                 'value' => '<h3>关于我们</h3>
@@ -231,6 +266,7 @@ $config = [
                 'description' => '设置网站页脚关于我们。'
             ],
             [
+                // 页脚链接
                 'type' => 'Textarea',
                 'name' => 'Uika_Footer_Links',
                 'value' => '<h3>快速链接</h3>
@@ -243,6 +279,7 @@ $config = [
                 'description' => '设置网站页脚快速链接。'
             ],
             [
+                // 页脚联系我们
                 'type' => 'Textarea',
                 'name' => 'Uika_Footer_Contact',
                 'value' => '<h3>联系我们</h3>
@@ -267,6 +304,13 @@ $config = [
         'title' => '其他设置',
         'fields' => [
             [
+                'type' => 'Html',
+                'content' => '<div style="text-align: center;font-size: 24px;">
+                    非必要的情况下保持关闭为好
+                </div>'
+            ],
+            [
+                // TTDF框架API开关
                 'type' => 'Select',
                 'name' => 'TTDF_RESTAPI_Switch',
                 'value' => 'false',
@@ -278,6 +322,7 @@ $config = [
                 ]
             ],
             [
+                // 性能检测
                 'type' => 'Select',
                 'name' => 'Uika_NB',
                 'value' => 'false',

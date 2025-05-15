@@ -25,7 +25,7 @@ TTDF_Hook::add_action('load_foot', function () {
             },
             template: `
             <a-carousel
-                :auto-play="true"
+                auto-play
                 animation-name="fade"
                 indicator-type="dot"
                 show-arrow="hover"

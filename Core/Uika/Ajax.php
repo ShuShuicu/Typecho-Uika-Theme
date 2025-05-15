@@ -1,11 +1,11 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-// 需要登录的action示例
-function IndexPostList($data)
-{
-
+function profile($data) {
+    $user = Typecho_Widget::widget('Widget_User');
+    TyAjax_send_success('欢迎您！' . $user->name);
 }
-TyAjax_action('ty_ajax_nopriv_profile', 'IndexPostList');
+TyAjax_action('ty_ajax_profile', 'profile');
+TyAjax_action('ty_ajax_nopriv_profile', 'profile');
 
 TyAjax_Core::init();
