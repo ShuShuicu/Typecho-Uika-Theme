@@ -31,49 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
             typeof ArcoVue === 'object' &&
             ArcoVue.install;
     };
-
-    // 初始化Vue应用
-    const initializeApp = () => {
-        try {
-            if (!checkDependencies()) {
-                throw new Error('Vue或ArcoVue未正确加载');
-            }
-
-            const { createApp } = Vue;
-
-            // 检查是否已有实例
-            if (document.querySelector('#app[data-v-app]')) {
-                console.warn('已有Vue应用实例，跳过初始化');
-                return;
-            }
-
-            const app = createApp({
-                data() {
-                    return {
-                        Uika: '',
-                    };
-                }
-            });
-
-            // 注册ArcoVue组件
-            app.use(ArcoVue);
-
-            // 确保挂载点存在
-            let mountPoint = document.querySelector('#app');
-            if (!mountPoint) {
-                mountPoint = document.createElement('div');
-                mountPoint.id = 'app';
-                document.body.appendChild(mountPoint);
-            }
-
-            app.mount(mountPoint);
-            mdui?.mutation();
-            console.log('Vue应用挂载成功');
-        } catch (error) {
-            console.error('应用初始化失败:', error);
-        }
-    };
-
     // 观察依赖加载
     const setupObserver = () => {
         if (checkDependencies()) {

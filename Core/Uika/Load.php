@@ -16,6 +16,7 @@ TTDF_Hook::add_action('load_head', function () {
         'font-awesome/css/all.min.css',
     ];
     $scripts = [
+        'init.js',
         'vue.global.min.js',
         'jquery.min.js',
     ];

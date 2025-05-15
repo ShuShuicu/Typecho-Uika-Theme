@@ -22,11 +22,14 @@ Uika::GetComponent('CommentList')
                             <?php if ($this->user->hasLogin()) { ?>
                                 登录身份：<?php echo $this->user->screenName; ?>
                             <?php } else { ?>
-                                <div style="margin-bottom: 5px;">
+                                <div>
                                     <a-input placeholder="昵称" name="author" value="<?php $this->remember('author'); ?>" :max-length="10" allow-clear show-word-limit />
                                 </div>
+                                <div style="margin: 5px 0px;">
+                                    <a-input placeholder="邮箱" name="mail" value="<?php $this->remember('mail'); ?>" :max-length="15" allow-clear show-word-limit />
+                                </div>
                                 <div>
-                                    <a-input placeholder="邮箱" name="mail" value="<?php $this->remember('mail'); ?>" :max-length="35" allow-clear show-word-limit />
+                                    <a-input placeholder="网站" name="url" value="<?php $this->remember('url'); ?>" :max-length="30" allow-clear show-word-limit />
                                 </div>
                             <?php }; ?>
                             <div class="mdui-divider"></div>
