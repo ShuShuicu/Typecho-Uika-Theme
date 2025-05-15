@@ -1,5 +1,14 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+TTDF_Hook::add_action('load_head', function () {
+    echo <<<HTML
+    <style>
+        #Carousel {
+            display: none;
+        }
+    </style>
+HTML;
+});
 class useSeoMeta
 {
     public static function Title() {
@@ -12,7 +21,7 @@ class useSeoMeta
         echo '404, error, 错误';
     }
 }
-Get::Template('AppHeaderRouter');
+Get::Template('AppHeader');
 ?>
 <div class="error">
     <div style="text-align: center;">

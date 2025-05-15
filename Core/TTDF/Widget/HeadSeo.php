@@ -57,6 +57,11 @@ class TTDF_SEO
 }
 function TTDF_SEO_Title()
 {
+    if (class_exists('useSeoMeta')) {
+        useSeoMeta::Title();
+        return;
+    }
+
     if (!Get::Is("index") && !Get::Is("post") && !Get::Is("archive") && !Get::Is("category") && !Get::Is("tag") && !Get::Is("author") && !Get::Is("search")) {
         echo "404 Not Found";
         return;
@@ -83,9 +88,13 @@ function TTDF_SEO_Title()
         echo $SubTitle;
     }
 }
-
 function TTDF_SEO_Keywords()
 {
+    if (class_exists('useSeoMeta')) {
+        useSeoMeta::Keywords();
+        return;
+    }
+
     if (Get::Is('index')) {
         Get::Options('keywords', true);
     } elseif (Get::Is('post')) {
@@ -101,6 +110,11 @@ function TTDF_SEO_Keywords()
 
 function TTDF_SEO_Description()
 {
+    if (class_exists('useSeoMeta')) {
+        useSeoMeta::Description();
+        return;
+    }
+
     if (Get::Is('index')) {
         Get::Options('description', true);
     } elseif (Get::Is('post')) {
@@ -131,9 +145,3 @@ function TTDF_SEO_Description()
 <title><?php TTDF_SEO_Title(); ?></title>
     <meta name="keywords" content="<?php TTDF_SEO_Keywords(); ?>" />
     <meta name="description" content="<?php TTDF_SEO_Description(); ?>" />
-    <meta name="og:description" content="<?php echo TTDF_SEO_Description(); ?>" />
-    <meta property="og:locale" content="<?php echo Get::Options('lang') ? Get::Options('lang') : 'zh-CN' ?>" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="<?php Get::Options('title', true) ?>" />
-    <meta property="og:title" content="<?php echo TTDF_SEO_Title(); ?>" />
-    <meta property="og:url" content="<?php Get::PageUrl(); ?>" />
