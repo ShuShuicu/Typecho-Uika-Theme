@@ -15,5 +15,4 @@ class Uika
 }
 
 require_once 'Uika/Ajax.php';
-require_once 'Uika/Load.php';
 require_once 'Uika/Functions.php';

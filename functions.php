@@ -1,6 +1,9 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+define('__TTDF_FIELDS__', false); // 是否开启自定义字段
+$TTDF_Avatar = 'https://cravatar.cn/avatar/'; // 配置Avatar源
+
 /**
  * 路由配置
  * @var bool $TTDF_ROUTE 是否开启路由功能
@@ -8,23 +11,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * @var string $TTDF_RESTAPI_ROUTE `REST API`的路由配置
  * @example 主题注册设置项 TTDF_RESTAPI_Switch 值为 true 时，开启 REST API 功能
  */
-$TTDF_ROUTE = true;
+$TTDF_ROUTE = false;
 $TTDF_RESTAPI = false;
-$TTDF_RESTAPI_ROUTE = 'Uika/API';
-
-$TTDF_Fields = true; // 是否开启自定义字段
-
-// 配置Avatar源
-$TTDF_Avatar = 'https://cravatar.cn/avatar/';
+$TTDF_RESTAPI_ROUTE = 'API'; 
 
 // 引入框架配置文件
 require_once 'Core/TTDF.php';
-
-/**
- * 注册load_code钩子
- * @example 可通过load_code钩子，加载自定义的function文件，实现自定义功能
- */
-TTDF_Hook::do_action('load_code');
 
 /**
  * 自定义function代码

@@ -1,6 +1,7 @@
 {
   "name": "Uika",
   "dependencies": {
+    "element-plus": "^2.9.10",
     "flickity": "^3.0.0",
     "font-awesome": "^4.7.0",
     "imagesloaded": "^5.0.0",

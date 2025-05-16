@@ -9,7 +9,7 @@ TTDF_Hook::add_action('load_head', function () {
     </style>
 HTML;
 });
-class useSeoMeta
+class useSeo
 {
     public static function Title() {
         echo '出错啦';

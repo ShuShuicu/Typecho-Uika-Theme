@@ -3,6 +3,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 TTDF_Hook::add_action('load_foot', function () {
 ?>
     <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+        });
         (function() {
             var pres = document.querySelectorAll('pre');
             var lineNumberClassName = 'line-numbers';

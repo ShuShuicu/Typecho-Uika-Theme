@@ -1,12 +1,11 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-require_once 'Uika.php';
 if ($TTDF_ROUTE) {
     class TTDF_Router
     {
         // 路由列表
         private static $allowedRoutes = [
-            'Test' => 'handleTest', // 路由 => 处理方法
+            'test' => 'handleTest', // 路由 => 处理方法
         ];
 
         /**
@@ -42,7 +41,7 @@ if ($TTDF_ROUTE) {
             $response->setStatus(200);
 
             // 输出页头
-            Get::Template('AppHeaderRouter');
+            Get::Template('AppHeader');
 
             // 调用对应的处理方法
             $method = self::$allowedRoutes[$route];

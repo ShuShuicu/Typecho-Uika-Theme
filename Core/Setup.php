@@ -10,7 +10,7 @@ $config = [
                 'type' => 'Text',
                 'name' => 'FaviconUrl',
                 'value' => GetTheme::Url(false) . '/Assets/images/logo.png',
-                'label' => '图标',
+                'label' => '站点图标',
                 'description' => '设置网站图标，如果为空则使用' . Get::SiteUrl(false) . 'favicon.ico'
             ],
             [
@@ -18,7 +18,7 @@ $config = [
                 'type' => 'Text',
                 'name' => 'SubTitle',
                 'value' => '由 Uika 主题强力驱动',
-                'label' => '副标题',
+                'label' => '站点副标题',
                 'description' => '设置网站副标题，如果为空则不显示。<hr>'
             ],
             [
@@ -54,6 +54,53 @@ $config = [
                     'success' => '绿色成功',
                     'error' => '红色错误',
                 ]
+            ],
+        ]
+    ],
+    'SEO设置' => [
+        'title' => 'SEO设置',
+        'fields' => [
+            [
+                'type' => 'Html',
+                'content' => '<div style="text-align: center;font-size: 24px;">
+                    此设置仅为自定义首页SEO信息
+                </div>'
+            ],
+            [
+                // 提示开关
+                'type' => 'Select',
+                'name' => 'Uika_SEO_Switch',
+                'value' => 'false',
+                'label' => '开关',
+                'description' => '是否启用首页自定义SEO信息',
+                'options' => [
+                    'true' => '启用',
+                    'false' => '关闭',
+                ]
+            ],
+            [
+                // 首页标题
+                'type' => 'Text',
+                'name' => 'Uika_Index_Title',
+                'value' => '这是一个自定义的首页标题',
+                'label' => '首页标题',
+                'description' => '设置网站首页标题，如果为空则使用网站名称。'
+            ],
+            [
+                // 首页关键词
+                'type' => 'Text',
+                'name' => 'Uika_Index_Keywords',
+                'value'=> 'TTDF, Typecho, Uika',
+                'label' => '首页关键词',
+                'description' => '设置网站首页关键词，如果为空则使用默认关键词。'
+            ],
+            [
+                // 首页描述
+                'type' => 'Textarea',
+                'name' => 'Uika_Index_Description',
+                'value'=> 'Uika是一个不错的Typecho主题',
+                'label' => '首页网站描述',
+                'description' => '设置网站首页描述，如果为空则使用默认描述。'
             ],
         ]
     ],
@@ -100,7 +147,7 @@ $config = [
                 // 轮播图启用页面
                 'type' => 'Checkbox',
                 'name' => 'Uika_Carousel_Page',
-                'value' => ['index', 'post', 'page', 'archive'],
+                'value' => ['index', 'page', 'archive'],
                 'label' => '应用页面',
                 'description' => '请选择轮播图应用的页面',
                 'options' => [
@@ -248,7 +295,7 @@ $config = [
                 'name' => 'Uika_Footer_Copyright',
                 'value' => '<p>&copy; ' . date('Y') . ' ' . Get::SiteName(false) . ' 保留所有权利.</p>',
                 'label' => '版权设置',
-                'description' => '设置网站页脚版权声明。'
+                'description' => '一般设置为网站版权声明或备案号。'
             ],
             [
                 // 页脚关于我们
@@ -358,6 +405,20 @@ $config = [
                 <img src=" ' . GetTheme::Url(false) . '/Assets/images/logo.png" style="width: 120px;" />
             </p>
             <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=86 src="//music.163.com/outchain/player?type=2&id=2680457871&auto=1&height=66"></iframe>'
+            ],
+        ],
+    ],
+    '授权管理' => [
+        'title' => '授权管理',
+        'html' => [
+            [
+                'content' => '<h2>授权？要什么授权？！主题都开源了，不要授权！</h2>
+            <blockquote style="border-left: 4px solid #ccc; padding-left: 20px; margin: 20px 0;">
+                <p>当然还是接受赞助的~</p>
+            </blockquote>
+            <p style="text-align: center;">
+                <img src=" ' . GetTheme::Url(false) . '/Assets/images/avatar.jpg" style="width: 240px;" />
+            </p>'
             ],
         ],
     ],

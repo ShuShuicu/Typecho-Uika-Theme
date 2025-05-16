@@ -17,7 +17,7 @@
 }
 
 /* 暗色模式变量覆盖 */
-[arco-theme="dark"] {
+[uika-theme="dark"] {
   --card-bg: #2d2d2d;
   --card-text: #e0e0e0;
   --subtitle-color: #aaa;
@@ -93,6 +93,18 @@ a {
   margin: 20px auto;
 }
 
+@media screen and (max-width: 1024px) {
+  .Uika-Container {
+    max-width: 85%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Uika-Container {
+    max-width: 95%;
+  }
+}
+
 /* 顶部导航栏 */
 .Uika-Appbar {
   padding: 35px 0;
@@ -114,15 +126,10 @@ body .sidebar {
   
 }
 
-.swal2-popup {
-  color: inherit;
-  background-color: var(--card-bg);
+.Uika-Comments-List {
+  border: 1px solid var(--comment-border-color) !important;
+  border-radius: 16px !important;
 }
-
-.swal2-actions {
-  color: inherit;
-}
-
 
 /* 图片懒加载效果 */
 .thumbnail {
@@ -155,34 +162,39 @@ body .sidebar {
   opacity: 1;
 }
 
-.Uika-Carousel {
+.carousel {
   width: 100%;
-  height: 420px;
+  margin: 0 auto;
   margin-bottom: 20px;
 }
 
-@media (max-width: 1024px) {
-  .Uika-Carousel {
-      height: calc(420px / 1.3);
-  }
+.carousel-cell {
+  width: 100%;
+  height: 420px; /* 默认高度 */
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .Uika-Carousel {
-      height: calc(420px / 2);
-  }
-}
-
-.Uika-carousel-item {
-  border-radius: 4px;
-}
-
-.Uika-carousel-item img {
+.carousel-cell img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+@media (max-width: 1024px) {
+    .carousel-cell {
+        height: calc(420px / 1.3);
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-cell {
+        height: calc(420px / 2);
+    }
+}
 /* 错误页面样式 */
 .error img {
   max-width: 520px;
@@ -647,4 +659,217 @@ svg {
   top: 3px;
   font-size: 12px;
   font-family: "雅黑";
+}
+
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #29d;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+  opacity: 1.0;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+      -ms-transform: rotate(3deg) translate(0px, -4px);
+          transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+          animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes nprogress-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/*! Flickity v2.3.0
+https://flickity.metafizzy.co
+---------------------------------------------- */
+
+.flickity-enabled {
+  position: relative;
+}
+
+.flickity-enabled:focus { outline: none; }
+
+.flickity-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.flickity-slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* draggable */
+
+.flickity-enabled.is-draggable {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+/* ---- flickity-button ---- */
+
+.flickity-button {
+  position: absolute;
+  background: hsla(0, 0%, 100%, 0.75);
+  border: none;
+  color: #333;
+}
+
+.flickity-button:hover {
+  background: white;
+  cursor: pointer;
+}
+
+.flickity-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px #19F;
+}
+
+.flickity-button:active {
+  opacity: 0.6;
+}
+
+.flickity-button:disabled {
+  opacity: 0.3;
+  cursor: auto;
+  /* prevent disabled button from capturing pointer up event. #716 */
+  pointer-events: none;
+}
+
+.flickity-button-icon {
+  fill: currentColor;
+}
+
+/* ---- previous/next buttons ---- */
+
+.flickity-prev-next-button {
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  /* vertically center */
+  transform: translateY(-50%);
+}
+
+.flickity-prev-next-button.previous { left: 10px; }
+.flickity-prev-next-button.next { right: 10px; }
+/* right to left */
+.flickity-rtl .flickity-prev-next-button.previous {
+  left: auto;
+  right: 10px;
+}
+.flickity-rtl .flickity-prev-next-button.next {
+  right: auto;
+  left: 10px;
+}
+
+.flickity-prev-next-button .flickity-button-icon {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+}
+
+/* ---- page dots ---- */
+
+.flickity-page-dots {
+  position: absolute;
+  width: 100%;
+  bottom: -25px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  line-height: 1;
+}
+
+.flickity-rtl .flickity-page-dots { direction: rtl; }
+
+.flickity-page-dots .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 8px;
+  background: #333;
+  border-radius: 50%;
+  opacity: 0.25;
+  cursor: pointer;
+}
+
+.flickity-page-dots .dot.is-selected {
+  opacity: 1;
 }

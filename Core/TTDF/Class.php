@@ -44,5 +44,11 @@ require_once 'Widget/Widget.php';
 require_once 'Widget/TyAjax.php';
 /** API */
 require_once 'Widget/Api.php';
+
+require_once __DIR__ . '/../Load.php';
 require_once 'Widget/Functions.php';
+
 require_once 'Widget/Options.php';
+if (__TTDF_FIELDS__ == true) {
+    require_once 'Widget/Fields.php';
+}
