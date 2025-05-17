@@ -67,7 +67,7 @@ $config = [
                 </div>'
             ],
             [
-                // 提示开关
+                // SEO开关
                 'type' => 'Select',
                 'name' => 'Uika_SEO_Switch',
                 'value' => 'false',
@@ -90,7 +90,7 @@ $config = [
                 // 首页关键词
                 'type' => 'Text',
                 'name' => 'Uika_Index_Keywords',
-                'value'=> 'TTDF, Typecho, Uika',
+                'value' => 'TTDF, Typecho, Uika',
                 'label' => '首页关键词',
                 'description' => '设置网站首页关键词，如果为空则使用默认关键词。'
             ],
@@ -98,7 +98,7 @@ $config = [
                 // 首页描述
                 'type' => 'Textarea',
                 'name' => 'Uika_Index_Description',
-                'value'=> 'Uika是一个不错的Typecho主题',
+                'value' => 'Uika是一个不错的Typecho主题',
                 'label' => '首页网站描述',
                 'description' => '设置网站首页描述，如果为空则使用默认描述。'
             ],
@@ -173,22 +173,6 @@ $config = [
         'title' => '文章设置',
         'fields' => [
             [
-                // 缩略图
-                'type' => 'Text',
-                'name' => 'Uika_Post_Thumbnail',
-                'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
-                'label' => '缩略图',
-                'description' => '设置文章列表默认缩略图, 图片加载时会显示。'
-            ],
-            [
-                // 缩略图失效
-                'type' => 'Text',
-                'name' => 'Uika_Post_Thumbnail_Error',
-                'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
-                'label' => '失效图',
-                'description' => '设置文章列表失效缩略图, 图片失效时会显示。<hr>'
-            ],
-            [
                 // 收款码
                 'type' => 'Text',
                 'name' => 'Uika_Post_BiliPay_Img',
@@ -213,6 +197,44 @@ $config = [
                     'Funky.css' => 'Funky',
                     'Dark.css' => 'Dark',
                 ]
+            ],
+            [
+                // 缩略图
+                'type' => 'Text',
+                'name' => 'Uika_Post_Thumbnail',
+                'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
+                'label' => '懒加载图',
+                'description' => '设置文章列表默认懒加载图, 图片加载时会显示。'
+            ],
+            [
+                // 缩略图失效
+                'type' => 'Text',
+                'name' => 'Uika_Post_Thumbnail_Error',
+                'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
+                'label' => '懒加载失效图',
+                'description' => '设置文章列表懒加载失效图, 图片失效时会显示。'
+            ],
+            [
+                // 自定义缩略图
+                'type' => 'Textarea',
+                'name' => 'Uika_Post_Thumbnail_Custom',
+                'value' => GetTheme::Url(false) . '/Assets/images/thumb/1.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/2.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/3.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/4.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/5.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/6.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/7.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/8.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/9.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/10.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/11.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/12.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/13.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/14.webp' . "\n" .
+                    GetTheme::Url(false) . '/Assets/images/thumb/15.webp',
+                'label' => '自定义缩略图',
+                'description' => '设置文章自定义的默认缩略图, 没有缩略图时会显示。'
             ],
         ],
     ],

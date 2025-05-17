@@ -4,16 +4,27 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 /**
  * 获取随机缩略图URL
  *
- * @param string $base_url 基础URL路径
- * @param int $maxImages 最大图片数量
  * @return string 随机缩略图URL
  */
-function get_RandomThumbnail($base_url, $maxImages = 15)
+function get_RandomThumbnail()
 {
-    // 生成一个1到$maxImages之间的随机数  
-    $rand = mt_rand(1, $maxImages);
-    // 构造随机缩略图的URL  
-    return $base_url . $rand . '.webp';
+    // 从后台设置中获取自定义缩略图列表
+    $thumbnails = Helper::options()->Uika_Post_Thumbnail_Custom;
+    
+    if (!empty($thumbnails)) {
+        // 将文本按行分割成数组
+        $thumbnailList = array_filter(array_map('trim', explode("\n", $thumbnails)));
+        
+        if (!empty($thumbnailList)) {
+            // 随机选择一个缩略图
+            $randIndex = array_rand($thumbnailList);
+            return trim($thumbnailList[$randIndex]);
+        }
+    }
+    
+    // 默认缩略图路径
+    $base_url = Helper::options()->themeUrl . '/Assets/images/thumb/';
+    return $base_url . mt_rand(1, 15) . '.webp';
 }
 
 /**
@@ -39,23 +50,8 @@ function get_ArticleThumbnail($widget)
         return $attachmentThumb;
     }
 
-    // 获取默认缩略图路径
-    $base_url = '/Assets/images/thumb/'; // 默认缩略图路径  
-
-    // 如果设置了articleImgSpeed，则使用它作为图片的基本URL  
-    if (!empty(Helper::options()->articleImgSpeed)) {
-        $base_url = Helper::options()->articleImgSpeed;
-        // 确保URL以斜杠结尾  
-        if (substr($base_url, -1) !== '/') {
-            $base_url .= '/';
-        }
-    } else {
-        // 使用themeUrl和默认的图片路径  
-        $base_url = $widget->widget('Widget_Options')->themeUrl . $base_url;
-    }
-
     // 调用辅助函数获取随机缩略图  
-    return get_RandomThumbnail($base_url);
+    return get_RandomThumbnail();
 }
 
 /**
@@ -70,8 +66,6 @@ function extractImageFromContent($content)
     if (preg_match($pattern, $content, $matches) && strlen($matches[1]) > 7) {
         return htmlspecialchars($matches[1]);
     }
-    // 添加调试信息
-    error_log('Failed to extract image from content: ' . $content);
     return null;
 }
 
@@ -87,11 +81,8 @@ function getAttachmentImageUrl($widget)
     if ($attach && $attach->isImage) {
         return htmlspecialchars($attach->url);
     }
-    // 添加调试信息
-    error_log('Failed to get attachment image: ' . print_r($attach, true));
     return null;
 }
-
 /*
 * 评论回复时 @ 评论人
 */

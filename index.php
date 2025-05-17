@@ -1,7 +1,7 @@
 <?php 
 /**
  * 一款不错的Typecho主题
- * @package Uika_old
+ * @package Uika
  * @author 鼠子(Tomoriゞ)
  * @version 1.0.0_Dev3
  * @link https://github.com/ShuShuicu/Typecho-Uika-Theme

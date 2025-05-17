@@ -12,8 +12,11 @@ TTDF_Hook::add_action('load_foot', function () {
                 };
             },
             template: `
-            <a-alert v-if="alertSwitch === 'true'" :type="alertMode" banner closable style="margin-bottom: 10px;">{{ alertContent }}</a-alert>
-        `,
+                <div v-if="alertSwitch === 'true'" :class="['Uika-Alerts', 'Uika-Alerts--' + alertMode]">
+                    <span class="Uika-Alerts-icon"></span>
+                    <div class="Uika-Alerts-content">{{ alertContent }}</div>
+                </div>
+            `,
         });
         Alert.mount('#Alert');
     </script>

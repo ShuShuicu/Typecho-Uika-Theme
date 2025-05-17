@@ -11,7 +11,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     <link href="<?php echo Get::Options('FaviconUrl', false) ? Get::Options('FaviconUrl', false) : Get::SiteUrl(false) . 'favicon.ico'; ?>" rel="icon" />
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-blue mdui-theme-layout-light">
+<body class="mdui-theme-primary-indigo mdui-theme-accent-blue mdui-theme-layout-light" uika-theme="light">
     <div id="app">
         <header>
             <?php Uika::GetComponent('Appbar'); ?>

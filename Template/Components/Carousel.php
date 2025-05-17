@@ -41,8 +41,7 @@ TTDF_Hook::add_action('load_foot', function () {
 <?php
 });
 ?>
-?>
-<div class="carousel">
+<div class="carousel" id="Carousel">
     <?php
     $Uika_Carousel_Content = Get::Options('Uika_Carousel_Content');
     $CarouselItems = explode("\n", $Uika_Carousel_Content);

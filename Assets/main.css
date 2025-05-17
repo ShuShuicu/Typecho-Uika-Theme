@@ -12,8 +12,9 @@
   --card-text: #333;
   --subtitle-color: #666;
   --appbar-bg: #ffffffcc;
-  --comment-border-color: #ddd;
+  --comment-border-color: #666;
   --content-ds-bg: #fffcf7;
+  --dialog-border: #eee;
 }
 
 /* 暗色模式变量覆盖 */
@@ -24,6 +25,7 @@
   --appbar-bg: #2d2d2dcc;
   --comment-border-color: #555;
   --content-ds-bg: #3a3a3a;
+  --dialog-border: #333;
 }
 
 /* 启用视图过渡 */
@@ -41,13 +43,21 @@
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /* 确保首次加载时也有淡入效果 */
@@ -62,7 +72,7 @@ body {
     opacity: 0;
     transition: opacity 0.5s ease-in;
   }
-  
+
   body.loaded {
     opacity: 1;
   }
@@ -123,9 +133,266 @@ body .sidebar {
   body .sidebar {
     display: none;
   }
-  
 }
 
+/* Alerts样式 */
+.Uika-Alerts {
+  position: relative;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* 图标样式 */
+.Uika-Alerts-icon {
+  margin-right: 12px;
+  width: 1em;
+  text-align: center;
+}
+
+/* 内容区域 */
+.Uika-Alerts-content {
+  flex: 1;
+}
+
+/* 四种类型变体 */
+.Uika-Alerts--info {
+  color: #084298;
+  background-color: #cfe2ff;
+  border-color: #b6d4fe;
+}
+
+.Uika-Alerts--warning {
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+}
+
+.Uika-Alerts--success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+.Uika-Alerts--error {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+/* Font Awesome图标定义 */
+.Uika-Alerts--info .Uika-Alerts-icon::before {
+  content: "\f05a"; /* info-circle */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.Uika-Alerts--warning .Uika-Alerts-icon::before {
+  content: "\f071"; /* exclamation-triangle */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.Uika-Alerts--success .Uika-Alerts-icon::before {
+  content: "\f058"; /* check-circle */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.Uika-Alerts--error .Uika-Alerts-icon::before {
+  content: "\f057"; /* times-circle */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+/* 对话框 */
+.Uika-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.Uika-dialog-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.Uika-dialog-container {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 500px;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.Uika-dialog-overlay.active .Uika-dialog-container {
+  transform: translateY(0);
+}
+
+.Uika-dialog-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--card-text);
+}
+
+.Uika-dialog-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+  padding: 5px;
+}
+
+.Uika-dialog-close:hover {
+  color: #666;
+}
+
+/* 对话框内容 */
+body.dialog-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+.Uika-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.Uika-dialog-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.Uika-dialog-container {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 500px;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Uika-dialog-overlay.active .Uika-dialog-container {
+  transform: translateY(0);
+}
+
+/* 对话框头部 */
+.Uika-dialog-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--dialog-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* 对话框底部按钮区 */
+.Uika-dialog-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--dialog-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.Uika-dialog-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--card-text);
+}
+
+.Uika-dialog-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+  padding: 5px;
+}
+
+.Uika-dialog-close:hover {
+  color: #666;
+}
+
+/* 对话框内容 */
+.Uika-dialog-content {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.Uika-dialog-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.Uika-dialog-button-primary {
+  background-color: #4a6bdf;
+  color: white;
+}
+
+.Uika-dialog-button-primary:hover {
+  background-color: #3a5bd9;
+}
+
+.Uika-dialog-button-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.Uika-dialog-button-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* 对话框控制按钮区 */
+.Uika-dialog-controls {
+  display: flex;
+  gap: 10px;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+
+/* 评论列表 */
 .Uika-Comments-List {
   border: 1px solid var(--comment-border-color) !important;
   border-radius: 16px !important;
@@ -165,7 +432,7 @@ body .sidebar {
 .carousel {
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 }
 
 .carousel-cell {
@@ -177,7 +444,6 @@ body .sidebar {
   justify-content: center;
   overflow: hidden;
 }
-
 .carousel-cell img {
   width: 100%;
   height: 100%;
@@ -185,19 +451,19 @@ body .sidebar {
 }
 
 @media (max-width: 1024px) {
-    .carousel-cell {
-        height: calc(420px / 1.3);
-    }
+  .carousel-cell {
+    height: calc(420px / 1.3);
+  }
 }
 
 @media (max-width: 768px) {
-    .carousel-cell {
-        height: calc(420px / 2);
-    }
+  .carousel-cell {
+    height: calc(420px / 2);
+  }
 }
 /* 错误页面样式 */
 .error img {
-  max-width: 520px;
+  max-width: 768px;
 }
 
 .error .arco-result-icon {
@@ -279,7 +545,6 @@ body .mdui-card {
     width: calc(50% - 20px);
   }
 }
-
 
 @media (max-width: 768px) {
   #IndexShuffle .post-grid .post-item {
@@ -378,7 +643,6 @@ body .footer-links li {
 }
 
 @media (max-width: 768px) {
-
   /* 移动端页脚布局 */
   .footer-columns {
     display: flex;
@@ -686,11 +950,11 @@ svg {
   width: 100px;
   height: 100%;
   box-shadow: 0 0 10px #29d, 0 0 5px #29d;
-  opacity: 1.0;
+  opacity: 1;
 
   -webkit-transform: rotate(3deg) translate(0px, -4px);
-      -ms-transform: rotate(3deg) translate(0px, -4px);
-          transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
 }
 
 /* Remove these to get rid of the spinner */
@@ -713,7 +977,7 @@ svg {
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;
-          animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
 }
 
 .nprogress-custom-parent {
@@ -727,14 +991,21 @@ svg {
 }
 
 @-webkit-keyframes nprogress-spinner {
-  0%   { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 @keyframes nprogress-spinner {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 
 /*! Flickity v2.3.0
 https://flickity.metafizzy.co
@@ -744,7 +1015,9 @@ https://flickity.metafizzy.co
   position: relative;
 }
 
-.flickity-enabled:focus { outline: none; }
+.flickity-enabled:focus {
+  outline: none;
+}
 
 .flickity-viewport {
   overflow: hidden;
@@ -763,9 +1036,9 @@ https://flickity.metafizzy.co
 .flickity-enabled.is-draggable {
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .flickity-enabled.is-draggable .flickity-viewport {
@@ -795,7 +1068,7 @@ https://flickity.metafizzy.co
 
 .flickity-button:focus {
   outline: none;
-  box-shadow: 0 0 0 5px #19F;
+  box-shadow: 0 0 0 5px #19f;
 }
 
 .flickity-button:active {
@@ -824,8 +1097,12 @@ https://flickity.metafizzy.co
   transform: translateY(-50%);
 }
 
-.flickity-prev-next-button.previous { left: 10px; }
-.flickity-prev-next-button.next { right: 10px; }
+.flickity-prev-next-button.previous {
+  left: 10px;
+}
+.flickity-prev-next-button.next {
+  right: 10px;
+}
 /* right to left */
 .flickity-rtl .flickity-prev-next-button.previous {
   left: auto;
@@ -857,7 +1134,9 @@ https://flickity.metafizzy.co
   line-height: 1;
 }
 
-.flickity-rtl .flickity-page-dots { direction: rtl; }
+.flickity-rtl .flickity-page-dots {
+  direction: rtl;
+}
 
 .flickity-page-dots .dot {
   display: inline-block;

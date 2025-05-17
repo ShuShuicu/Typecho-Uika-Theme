@@ -23,17 +23,15 @@ class useSeo
 }
 Get::Template('AppHeader');
 ?>
-<div class="error">
-    <div style="text-align: center;">
+<div class="error" style="text-align: center;">
+    <div>
         <img src="<?php GetTheme::AssetsUrl(); ?>/images/404.svg" alt="404 error" />
     </div>
-    <a-result subtitle="你似乎来到了没有知识存在的荒原">
-        <template #extra>
-            <a-space>
-                <a-button type="primary" href="<?php Get::SiteUrl() ?>">去往首页</a-button>
-            </a-space>
-        </template>
-    </a-result>
+    <div>
+        <a href="<?php Site::Url() ?>">
+            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" style="margin-top: 20px;">返回首页</button>
+        </a>
+    </div>
 </div>
 <?php
 Get::Template('AppFooter');

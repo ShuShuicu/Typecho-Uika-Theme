@@ -20,7 +20,7 @@ TTDF_Hook::add_action('load_foot', function () {
 ?>
 
 <div id="con">
-    <div class="TA-con" id="BiliPay">
+    <div class="TA-con Uika-dialog-control-btn" data-dialog="Uika-BiliPay">
         <div id="text-con">
             <div id="linght"></div>
             <div id="TA">为TA充电</div>
@@ -66,5 +66,26 @@ TTDF_Hook::add_action('load_foot', function () {
             </svg>
         </div>
         <p id="people"><b>感谢支持</b></p>
+    </div>
+</div>
+
+<div class="Uika-dialog-overlay" id="Uika-BiliPay">
+    <div class="Uika-dialog-container">
+        <div class="Uika-dialog-header">
+            <h3 class="Uika-dialog-title">
+                <i class="fa-solid fa-battery-half"></i> 为 <?php UserInfo::Name() ?> 充电
+            </h3>
+            <button class="Uika-dialog-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="Uika-dialog-content" style="text-align: center;">
+            <img src="<?php Get::Options('Uika_Post_BiliPay_Img', true) ?>" />
+        </div>
+        <div class="Uika-dialog-footer">
+            <button class="Uika-dialog-button Uika-dialog-button-secondary">
+            <i class="fas fa-times"></i> 取消
+            </button>
+        </div>
     </div>
 </div>

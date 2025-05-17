@@ -35,10 +35,10 @@ TTDF_Hook::add_action('load_foot', function () {
                     <div class="separator">THE END</div>
                     <div class="content-ds">
                         <span>© 转载请保留原链接</span>
+                        <div class="content-ds-count"><span>还没有人充电，快来当第一个充电的人吧！</span></div>
                         <div class="content-ds-button">
                             <?php Uika::GetComponent('BilibiliPay') ?>
                         </div>
-                        <div class="content-ds-count"><span>还没有人充电，快来当第一个充电的人吧！</span></div>
                     </div>
                 </div>
             </div>

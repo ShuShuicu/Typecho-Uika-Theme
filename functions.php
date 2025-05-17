@@ -13,7 +13,7 @@ $TTDF_Avatar = 'https://cravatar.cn/avatar/'; // 配置Avatar源
  */
 $TTDF_ROUTE = false;
 $TTDF_RESTAPI = false;
-$TTDF_RESTAPI_ROUTE = 'API'; 
+$TTDF_RESTAPI_ROUTE = 'Uika/API'; 
 
 // 引入框架配置文件
 require_once 'Core/TTDF.php';
