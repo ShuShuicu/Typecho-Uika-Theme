@@ -1,22 +1,5 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-TTDF_Hook::add_action('load_foot', function () {
-?>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('BiliPay').addEventListener('click', function() {
-                Swal.fire({
-                    title: "感谢支持",
-                    text: "点点赞赏，手留余香",
-                    imageUrl: "<?php Get::Options('Uika_Post_BiliPay_Img', true) ?>",
-                    imageWidth: 300,
-                    imageAlt: "充电收款码"
-                });
-            });
-        });
-    </script>
-<?php
-});
 ?>
 
 <div id="con">

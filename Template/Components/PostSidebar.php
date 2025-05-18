@@ -10,7 +10,7 @@ function Uika_Author_Avatar()
 }
 
 $featuredPosts = GetPost::List([
-    'pageSize' => 10,
+    'pageSize' => 6,
     'type' => 'category',
     'mid' => 2
 ]);

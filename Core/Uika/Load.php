@@ -1,33 +1,62 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-/**
- * 加载资源文件
- * @var array $load_dir_name 资源文件目录名称
- * @var array $load_head_css 加载head标签css
- * @var array $load_head_js 加载head标签js
- * @var array $load_foot_js 加载body标签js
- * @example $load_switch = 启用框架加载资源文件
- */
-define('__LOAD_SWITCH__', true); // 是否开启加载资源文件
 $load_dir_name = 'Assets'; // 资源文件目录名称
 $load_head_css = [
     'main.css',
-    '_ttdf/message.css',
+    'message.css',
     'prism/' . Get::Options('Uika_Post_Prism_Css', false) ?: 'Okaidia.css',
     'mdui/css/mdui.min.css',
     'font-awesome/css/all.min.css',
 ];
 $load_head_js = [
     'vue.global.min.js',
-    '_ttdf/jquery.min.js',
+    'jquery.min.js',
 ];
 $load_foot_js = [
     'main.js',
-    '_ttdf/ajax.js',
-    '_ttdf/message.min.js',
+    'ajax.js',
+    'message.min.js',
     'mdui/js/mdui.min.js',
 ];
+
+// 初始化可能未定义的变量
+$load_dir_name = $load_dir_name ?? null;
+$load_head_css = $load_head_css ?? [];
+$load_head_js = $load_head_js ?? [];
+$load_foot_js = $load_foot_js ?? [];
+
+// 获取资源URL和版本号的公共函数
+$getAssetsUrl = function ($dirName = null) {
+    return GetTheme::Url(false) . '/' . ($dirName ?? 'Assets');
+};
+$ver = GetTheme::Ver(false);
+
+// 加载头部CSS和JS资源
+TTDF_Hook::add_action('load_head', function ($skipHead = false) use ($load_head_css, $load_head_js, $load_dir_name, $getAssetsUrl, $ver) {
+    $assetsUrl = $getAssetsUrl($load_dir_name);
+    $output = '';
+    // 生成CSS链接
+    foreach ($load_head_css as $style) {
+        $output .= "    <link rel=\"stylesheet\" href=\"{$assetsUrl}/{$style}?ver={$ver}\">\n";
+    }
+    // 生成JS链接
+    foreach ($load_head_js as $script) {
+        $output .= "    <script src=\"{$assetsUrl}/{$script}?ver={$ver}\"></script>\n";
+    }
+    echo $output;
+});
+
+// 加载底部JS资源
+TTDF_Hook::add_action('load_foot', function () use ($load_foot_js, $load_dir_name, $getAssetsUrl, $ver) {
+    $assetsUrl = $getAssetsUrl($load_dir_name);
+    $output = '';
+    foreach ($load_foot_js as $index => $script) {
+        $output .= ($index !== 0 ? "    " : "") . "<script src=\"{$assetsUrl}/{$script}?ver={$ver}\"></script>\n";
+    }
+    echo $output;
+});
+
 
 TTDF_Hook::add_action('load_foot', function () {
 ?>
