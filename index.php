@@ -3,7 +3,7 @@
  * 一款不错的Typecho主题
  * @package Uika
  * @author 鼠子(Tomoriゞ)
- * @version 1.0.0_Dev3
+ * @version 1.0.0_Dev4
  * @link https://github.com/ShuShuicu/Typecho-Uika-Theme
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
