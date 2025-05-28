@@ -12,18 +12,16 @@
   --card-text: #333;
   --subtitle-color: #666;
   --appbar-bg: #ffffffcc;
-  --comment-border-color: #666;
   --content-ds-bg: #fffcf7;
   --dialog-border: #eee;
 }
 
 /* 暗色模式变量覆盖 */
-[uika-theme="dark"] {
+[arco-theme="dark"] {
   --card-bg: #2d2d2d;
   --card-text: #e0e0e0;
   --subtitle-color: #aaa;
   --appbar-bg: #2d2d2dcc;
-  --comment-border-color: #555;
   --content-ds-bg: #3a3a3a;
   --dialog-border: #333;
 }
@@ -135,11 +133,16 @@ body .sidebar {
   }
 }
 
+/* flickity */
+body .flickity-page-dots .dot {
+  background: var(--card-text);
+}
+
 /* Alerts样式 */
 .Uika-Alerts {
   position: relative;
   padding: 12px 16px;
-  margin: 12px 0;
+  margin-bottom: 12px;
   border-radius: 4px;
   border: 1px solid transparent;
   font-size: 14px;
@@ -392,12 +395,6 @@ body.dialog-open {
   flex-wrap: wrap;
 }
 
-/* 评论列表 */
-.Uika-Comments-List {
-  border: 1px solid var(--comment-border-color) !important;
-  border-radius: 16px !important;
-}
-
 /* 图片懒加载效果 */
 .thumbnail {
   position: relative;
@@ -475,6 +472,13 @@ body .mdui-typo {
   font-size: 17px;
   line-height: 1.5;
   word-wrap: break-word;
+}
+.mdui-typo img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  border-radius: 4px;
 }
 
 body .mdui-typo :is(h1, h2, h3, h4, h5, h6) {

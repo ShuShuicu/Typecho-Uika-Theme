@@ -47,7 +47,7 @@ TTDF_Hook::add_action('load_foot', function () {
             </div>
         <?php } ?>
         <div class="mdui-toolbar-spacer"></div>
-        <a href="javascript:;" class="mdui-btn mdui-btn-icon" id="searchButton">
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon Uika-dialog-control-btn" data-dialog="Uika-Search">
             <i class="mdui-icon material-icons">search</i>
         </a>
         <a href="javascript:;" class="mdui-btn mdui-btn-icon" id="SwitchTheme" onclick="switchTheme()">
@@ -58,6 +58,32 @@ TTDF_Hook::add_action('load_foot', function () {
 
 <div class="mdui-drawer mdui-drawer-close mdui-card" id="Drawer" style="border-radius: 0px;">
     <ul class="mdui-list" mdui-collapse="{accordion: true}">
-        <?php json_encode(Get::Options('Uika_Drawer_Links', true)); ?>
+        <?php Get::Options('Uika_Drawer_Links', true); ?>
     </ul>
+</div>
+
+
+<div class="Uika-dialog-overlay" id="Uika-Search">
+    <div class="Uika-dialog-container">
+        <div class="Uika-dialog-header">
+            <h3 class="Uika-dialog-title">
+                <i class="fa-solid fa-search"></i> 搜索
+            </h3>
+            <button class="Uika-dialog-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form method="post" role="search">
+            <div class="Uika-dialog-content" style="text-align: center;">
+                <div class="mdui-textfield">
+                    <input class="mdui-textfield-input" type="text" name="s" placeholder="开启精彩搜索" />
+                </div>
+            </div>
+            <div class="Uika-dialog-footer">
+                <button class="Uika-dialog-button Uika-dialog-button-primary" type="submit">
+                    <i class="fas fa-check"></i> 搜索
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

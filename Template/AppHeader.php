@@ -29,6 +29,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                     (in_array('index', $carouselPages) && Get::Is('index')) ||
                     (in_array('post', $carouselPages) && Get::Is('post')) ||
                     (in_array('page', $carouselPages) && Get::Is('page')) ||
+                    (in_array('search', $carouselPages) && Get::Is('search')) ||
                     (in_array('archive', $carouselPages) && Get::Is('archive'))
                 ) {
                     Uika::GetComponent('Carousel'); // 启用轮播图

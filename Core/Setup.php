@@ -1,7 +1,7 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-// 定义所有设置项
-$config = [
+// 定义主题设置项
+return [
     '基础设置' => [
         'title' => '基础设置',
         'fields' => [
@@ -9,7 +9,7 @@ $config = [
                 // 网站图标
                 'type' => 'Text',
                 'name' => 'FaviconUrl',
-                'value' => GetTheme::Url(false) . '/Assets/images/logo.png',
+                'value' => get_theme_file_url('Assets/images/logo.png', false),
                 'label' => '站点图标',
                 'description' => '设置网站图标，如果为空则使用' . Get::SiteUrl(false) . 'favicon.ico'
             ],
@@ -25,7 +25,7 @@ $config = [
                 // 提示开关
                 'type' => 'Select',
                 'name' => 'Uika_Alert_Switch',
-                'value' => 'false',
+                'value' => 'true',
                 'label' => '公告提示',
                 'description' => '是否启用公告提示',
                 'options' => [
@@ -37,7 +37,7 @@ $config = [
                 // 公告提示内容
                 'type' => 'Text',
                 'name' => 'Uika_Alert_Content',
-                'value' => '感谢使用 Uika 主题！',
+                'value' => 'Uika是一款不错的Typecho主题! 喜欢的话请点个Star, 谢谢!',
                 'label' => '公告内容',
                 'description' => '公告提示内容。',
             ],
@@ -153,7 +153,8 @@ $config = [
                 'options' => [
                     'index' => '首页',
                     'post' => '文章页',
-                    'page' => '独立页面',
+                    'page' => '独立页',
+                    'search' => '搜索页',
                     'archive' => '分类标签归档页',
                 ]
             ],
@@ -176,7 +177,7 @@ $config = [
                 // 收款码
                 'type' => 'Text',
                 'name' => 'Uika_Post_BiliPay_Img',
-                'value' => GetTheme::Url(false) . '/Assets/images/logo.png',
+                'value' => get_theme_file_url('Assets/images/logo.png', false),
                 'label' => '收款码',
                 'description' => '设置文章底部充电收款码。<hr>'
             ],
@@ -202,7 +203,7 @@ $config = [
                 // 缩略图
                 'type' => 'Text',
                 'name' => 'Uika_Post_Thumbnail',
-                'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
+                'value' => get_theme_file_url('Assets/images/thumbnail.svg', false),
                 'label' => '懒加载图',
                 'description' => '设置文章列表默认懒加载图, 图片加载时会显示。'
             ],
@@ -210,7 +211,7 @@ $config = [
                 // 缩略图失效
                 'type' => 'Text',
                 'name' => 'Uika_Post_Thumbnail_Error',
-                'value' => GetTheme::Url(false) . '/Assets/images/thumbnail.svg',
+                'value' => get_theme_file_url('Assets/images/thumbnail.svg', false),
                 'label' => '懒加载失效图',
                 'description' => '设置文章列表懒加载失效图, 图片失效时会显示。'
             ],
@@ -218,23 +219,52 @@ $config = [
                 // 自定义缩略图
                 'type' => 'Textarea',
                 'name' => 'Uika_Post_Thumbnail_Custom',
-                'value' => GetTheme::Url(false) . '/Assets/images/thumb/1.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/2.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/3.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/4.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/5.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/6.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/7.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/8.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/9.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/10.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/11.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/12.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/13.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/14.webp' . "\n" .
-                    GetTheme::Url(false) . '/Assets/images/thumb/15.webp',
+                'value' => get_theme_file_url('Assets/images/thumb/1.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/2.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/3.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/4.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/5.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/6.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/7.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/8.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/9.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/10.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/11.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/12.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/13.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/14.webp', false) . "\n" .
+                    get_theme_file_url('Assets/images/thumb/15.webp', false),
                 'label' => '自定义缩略图',
                 'description' => '设置文章自定义的默认缩略图, 没有缩略图时会显示。'
+            ],
+        ],
+    ],
+    '侧边设置' => [
+        'title' => '侧边设置',
+        'fields' => [
+            [
+                // 作者头像
+                'type' => 'Text',
+                'name' => 'Uika_Author_Avatar',
+                'value' => get_theme_file_url('Assets/images/avatar.jpg', false),
+                'label' => '作者头像',
+                'description' => '设置作者头像, 如果为空则使用Gravatar。'
+            ],
+            [
+                // 作者介绍
+                'type' => 'Text',
+                'name' => 'Uika_Author_Description',
+                'value' => '装逼让你飞起来！',
+                'label' => '作者介绍',
+                'description' => '设置侧边作者介绍。'
+            ],
+            [
+                // 侧边文章数量
+                'type' => 'Text',
+                'name' => 'Uika_Sidebar_Post_Size',
+                'value' => '6',
+                'label' => '文章数量',
+                'description' => '设置侧边栏文章输出文章数量。'
             ],
         ],
     ],
@@ -294,19 +324,6 @@ $config = [
                 'description' => '设置网站抽屉侧边导航, 使用MDUI的列表组件<a href="https://www.mdui.org/docs/list">https://www.mdui.org/docs/list</a>'
             ],
         ]
-    ],
-    '侧边设置' => [
-        'title' => '侧边设置',
-        'fields' => [
-            [
-                // 作者头像
-                'type' => 'Text',
-                'name' => 'Uika_Author_Avatar',
-                'value' => GetTheme::Url(false) . '/Assets/images/avatar.jpg',
-                'label' => '作者头像',
-                'description' => '设置作者头像, 如果为空则使用Gravatar。<hr>'
-            ],
-        ],
     ],
     '页脚设置' => [
         'title' => '页脚设置',
@@ -424,26 +441,10 @@ $config = [
                 ·
                 <a href="https://github.com/ShuShuicu/Typecho-Uika-Theme/issues">Github Issues</a>
                 <br />
-                <img src=" ' . GetTheme::Url(false) . '/Assets/images/logo.png" style="width: 120px;" />
+                <img src=" ' . get_theme_file_url('Assets/images/logo.png', false) . ' " style="width: 120px;" />
             </p>
             <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=86 src="//music.163.com/outchain/player?type=2&id=2680457871&auto=1&height=66"></iframe>'
             ],
         ],
     ],
-    '授权管理' => [
-        'title' => '授权管理',
-        'html' => [
-            [
-                'content' => '<h2>授权？要什么授权？！主题都开源了，不要授权！</h2>
-            <blockquote style="border-left: 4px solid #ccc; padding-left: 20px; margin: 20px 0;">
-                <p>当然还是接受赞助的~</p>
-            </blockquote>
-            <p style="text-align: center;">
-                <img src=" ' . GetTheme::Url(false) . '/Assets/images/avatar.jpg" style="width: 240px;" />
-            </p>'
-            ],
-        ],
-    ],
 ];
-
-return $config;

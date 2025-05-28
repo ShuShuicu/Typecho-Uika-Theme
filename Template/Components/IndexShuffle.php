@@ -3,83 +3,64 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 TTDF_Hook::add_action('load_foot', function () {
 ?>
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            // 等待 Vue 完成初始化后再初始化 Shuffle
-            const vueObserver = new MutationObserver(() => {
-                if (document.querySelector('#app[data-v-app]')) {
-                    vueObserver.disconnect();
-                    initShuffle();
-                }
+        // 初始化 Shuffle
+        initShuffle();
+
+        function initShuffle() {
+            const shuffleContainer = document.getElementById('Post');
+            if (!shuffleContainer) return;
+
+            window.shuffleInstance = new Shuffle(shuffleContainer, {
+                itemSelector: '.post-item',
+                sizer: null,
+                gutterWidth: 20,
+                buffer: 1
             });
 
-            vueObserver.observe(document.body, {
-                childList: true,
-                subtree: true,
-                attributes: true
-            });
+            function updateLayout() {
+                const width = window.innerWidth;
+                let itemWidth, columns;
 
-            // 超时处理
-            setTimeout(() => {
-                vueObserver.disconnect();
-                initShuffle();
-            }, 3000);
-
-            function initShuffle() {
-                const shuffleContainer = document.getElementById('Post');
-                if (!shuffleContainer) return;
-
-                window.shuffleInstance = new Shuffle(shuffleContainer, {
-                    itemSelector: '.post-item',
-                    sizer: null,
-                    gutterWidth: 20,
-                    buffer: 1
-                });
-
-                function updateLayout() {
-                    const width = window.innerWidth;
-                    let itemWidth, columns;
-
-                    if (width < 768) {
-                        itemWidth = '100%';
-                        columns = 1;
-                    } else if (width < 1024) {
-                        itemWidth = 'calc(50% - 20px)';
-                        columns = 2;
-                    } else {
-                        itemWidth = 'calc(33.333% - 20px)';
-                        columns = 3;
-                    }
-
-                    document.querySelectorAll('.post-item').forEach(item => {
-                        item.style.width = itemWidth;
-                    });
-
-                    if (window.shuffleInstance) {
-                        window.shuffleInstance.options.columns = columns;
-                        window.shuffleInstance.layout();
-                    }
+                if (width < 768) {
+                    itemWidth = '100%';
+                    columns = 1;
+                } else if (width < 1024) {
+                    itemWidth = 'calc(50% - 20px)';
+                    columns = 2;
+                } else {
+                    itemWidth = 'calc(33.333% - 20px)';
+                    columns = 3;
                 }
 
-                const resizeObserver = new ResizeObserver(entries => {
-                    for (let entry of entries) {
-                        if (entry.contentBoxSize) {
-                            updateLayout();
-                        }
-                    }
+                document.querySelectorAll('.post-item').forEach(item => {
+                    item.style.width = itemWidth;
                 });
 
-                resizeObserver.observe(shuffleContainer);
-
-                window.addEventListener('resize', function() {
-                    clearTimeout(this.resizeTimer);
-                    this.resizeTimer = setTimeout(function() {
-                        updateLayout();
-                    }, 200);
-                });
-
-                updateLayout();
+                if (window.shuffleInstance) {
+                    window.shuffleInstance.options.columns = columns;
+                    window.shuffleInstance.layout();
+                }
             }
-        });
+
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    if (entry.contentBoxSize) {
+                        updateLayout();
+                    }
+                }
+            });
+
+            resizeObserver.observe(shuffleContainer);
+
+            window.addEventListener('resize', function() {
+                clearTimeout(this.resizeTimer);
+                this.resizeTimer = setTimeout(function() {
+                    updateLayout();
+                }, 200);
+            });
+
+            updateLayout();
+        }
     </script>
 <?php
 });

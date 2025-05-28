@@ -10,9 +10,8 @@ function Uika_Author_Avatar()
 }
 
 $featuredPosts = GetPost::List([
-    'pageSize' => 6,
+    'pageSize' => Get::Options('Uika_Sidebar_Post_Size', false),
     'type' => 'category',
-    'mid' => 2
 ]);
 
 $postData = [];
@@ -35,34 +34,45 @@ TTDF_Hook::add_action('load_foot', function () use ($postData) {
                 return {
                     author: {
                         Avatar: '<?php Uika_Author_Avatar(); ?>',
-                        Name: '<?php echo UserInfo::Name(true, true); ?>'
+                        Name: '<?php echo UserInfo::Name(true, true); ?>',
+                        Description: '<?php echo Get::Options('Uika_Author_Description', false) ?: '原神启动！'; ?>',
                     },
                     posts: sidebarData.posts || []
                 };
             }
         });
+        Sidebar.use(ArcoVue);
         Sidebar.mount('#Sidebar');
     </script>
 <?php
 });
 ?>
 <div id="Sidebar">
+
     <div class="mdui-card mdui-m-b-2">
         <div class="mdui-card-header">
             <img class="mdui-card-header-avatar" :src="author.Avatar" />
             <div class="mdui-card-header-title">{{ author.Name }}</div>
-            <div class="mdui-card-header-subtitle">Subtitle</div>
+            <div class="mdui-card-header-subtitle">
+                <a-tooltip :content="author.Description" position="bottom">
+                    <a-typography-text>{{ author.Description }}</a-typography-text>
+                </a-tooltip>
+            </div>
         </div>
     </div>
 
     <div class="mdui-card mdui-m-b-2">
-        <div class="mdui-list">
-            <a v-for="post in posts"
-                :key="post.title"
-                :href="post.permalink"
-                class="mdui-list-item mdui-ripple">
-                {{ post.title }}
-            </a>
-        </div>
+        <a-list>
+            <a-list-item v-for="post in posts"
+                :key="post.title">
+                <a :href="post.permalink">
+                    {{ post.title }}</a>
+            </a-list-item>
+        </a-list>
     </div>
+
+    <div class="mdui-card mdui-card-content mdui-m-b-2">
+        <a-statistic title="本文阅读量" :value="<?php Postviews($this); ?>" show-group-separator />
+    </div>
+
 </div>
